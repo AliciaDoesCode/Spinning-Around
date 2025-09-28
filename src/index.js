@@ -11,11 +11,19 @@ const client = new Client({
   ],
 });
 
-client.on('clientReady', () => {
-  startXMonitor(client);
+client.on('ready', () => {
+  console.log(`✅ ${client.user.tag} is online and ready!`);
+});
 
-  });
+client.on('error', (error) => {
+  console.error('❌ Discord client error:', error);
+});
 
 eventHandler(client);
 
-client.login(process.env.TOKEN);
+client.login(process.env.TOKEN).catch((error) => {
+  console.error('❌ Failed to login:', error.message);
+  if (error.code === 'TokenInvalid') {
+    console.error('🔑 Please check your TOKEN in the .env file. Get a new token from https://discord.com/developers/applications');
+  }
+});

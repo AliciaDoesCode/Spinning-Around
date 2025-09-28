@@ -11,9 +11,6 @@ const client = new Client({
   ],
 });
 
-const startXMonitor = require('./utils/xToDiscord');
-
-
 client.on('clientReady', () => {
   startXMonitor(client);
 

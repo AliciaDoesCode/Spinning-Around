@@ -5,6 +5,9 @@ const getLocalCommands = require('../../utils/getLocalCommands');
 module.exports = async (client) => {
   console.log('🔄 Starting command registration...');
   try {
+    // Wait a bit to ensure client is fully ready
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
     const localCommands = getLocalCommands();
     const localCommandNames = localCommands.map(cmd => cmd.name);
     const applicationCommands = await getApplicationCommands(client);

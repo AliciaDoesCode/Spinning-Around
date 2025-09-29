@@ -7,6 +7,14 @@ module.exports = {
   name: 'setup-verify',
   description: 'Setup the verification system (Admin only)',
   testOnly: false,
+  options: [
+    {
+      name: 'force-new',
+      description: 'Force create a new verification message',
+      type: 5, 
+      required: false,
+    },
+  ],
 
   callback: async (client, interaction) => {
     if (!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
@@ -16,19 +24,17 @@ module.exports = {
       });
     }
 
-    // Create verification embed
     const embed = new EmbedBuilder()
       .setTitle('Welcome to Spinning Around')
-      .setDescription('**Welcome to our community!**\n\n' +
-        'To get started and access all channels, please click the **Verify** button below.\n\n' +
+      .setDescription('To get started and access all channels, please click the **Verify** button below.\n\n' +
         'This will give you access to all server features.')
       .setColor('#5865f2') 
-      .setThumbnail(interaction.guild.iconURL()) 
+      .setThumbnail(interaction.guild.iconURL())
+      .setImage('https://media.giphy.com/media/Cmr1OMJ2FN0B2/giphy.gif')
       .setFooter({ 
         text: 'Welcome to the server', 
         iconURL: interaction.guild.iconURL() 
-      })
-      .setTimestamp();
+      });
 
     const button = new ActionRowBuilder()
       .addComponents(
@@ -39,66 +45,39 @@ module.exports = {
       );
 
     try {
-      // Check if there's an existing verification message for this guild
+      // Check if verification message already exists for this guild
       const existingMessageId = verificationMessages.get(interaction.guild.id);
-      let verificationMessage;
-
+      
       if (existingMessageId) {
         try {
-          // Try to fetch and update the existing message
-          const existingMessage = await interaction.channel.messages.fetch(existingMessageId);
-          await existingMessage.edit({ 
-            embeds: [embed], 
-            components: [button] 
-          });
-          verificationMessage = existingMessage;
-          
-          await interaction.reply({ 
-            content: '✅ Verification message has been updated!', 
+          // Try to fetch the existing message to see if it still exists
+          await interaction.channel.messages.fetch(existingMessageId);
+          return interaction.reply({ 
+            content: 'Verification system is already set up in this server!', 
             ephemeral: true 
           });
         } catch (fetchError) {
-          // If message doesn't exist anymore, create a new one
+          // Message doesn't exist anymore, we can create a new one
           console.log('Previous verification message not found, creating new one...');
-          await interaction.reply({ 
-            content: '✅ Creating new verification message...', 
-            ephemeral: true 
-          });
-          
-          verificationMessage = await interaction.followUp({ 
-            embeds: [embed], 
-            components: [button],
-            fetchReply: true
-          });
-          
-          // Store the new message ID
-          verificationMessages.set(interaction.guild.id, verificationMessage.id);
         }
-      } else {
-        // No existing message, create a new one
-        await interaction.reply({ 
-          content: '✅ Verification system has been set up!', 
-          ephemeral: true 
-        });
-
-        verificationMessage = await interaction.followUp({ 
-          embeds: [embed], 
-          components: [button],
-          fetchReply: true
-        });
-        
-        // Store the message ID for future updates
-        verificationMessages.set(interaction.guild.id, verificationMessage.id);
       }
 
-      const filter = i => i.customId === 'verify_user';
-      const collector = verificationMessage.createMessageComponentCollector({ filter });
-
-      collector.on('collect', async (buttonInteraction) => {
-        await handleVerification(buttonInteraction);
+      // Send the verification message directly to the channel
+      const verificationMessage = await interaction.channel.send({ 
+        embeds: [embed], 
+        components: [button]
       });
 
-      console.log('✅ Verification system setup complete!');
+      // Reply privately to confirm setup
+      await interaction.reply({ 
+        content: 'Verification system setup complete!', 
+        ephemeral: true 
+      });
+
+      // Store the message ID for future reference
+      verificationMessages.set(interaction.guild.id, verificationMessage.id);
+
+      console.log('Verification system setup complete!');
 
     } catch (error) {
       console.error('Setup verification error:', error);

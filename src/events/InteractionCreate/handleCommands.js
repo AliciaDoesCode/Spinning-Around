@@ -1,8 +1,17 @@
 console.log('interactionCreate event fired');
 const { devs, testServer } = require('../../../config.json');
 const getLocalCommands = require('../../utils/getLocalCommands');
+const { EmbedBuilder } = require('discord.js');
 
 module.exports = async (client, interaction) => {
+  // Handle button interactions first
+  if (interaction.isButton()) {
+    if (interaction.customId === 'verify_user') {
+      await handleVerification(interaction);
+      return;
+    }
+  }
+
   if (!interaction.isChatInputCommand()) return;
 
   const localCommands = getLocalCommands();
@@ -71,3 +80,70 @@ module.exports = async (client, interaction) => {
     }
   }
 };
+
+async function handleVerification(interaction) {
+  const member = interaction.member;
+  const guild = interaction.guild;
+
+  try {
+    let membersRole = guild.roles.cache.find(role => 
+      role.name.toLowerCase() === 'members' || 
+      role.name.toLowerCase() === 'member'
+    );
+    
+    if (!membersRole) {
+      try {
+        membersRole = await guild.roles.create({
+          name: 'Members',
+          color: '#00ff99',
+          reason: 'Verification system - Members role created automatically'
+        });
+        console.log('Created Members role automatically');
+      } catch (roleError) {
+        console.error('Failed to create Members role:', roleError);
+        return interaction.reply({
+          content: 'Could not find or create the "Members" role. Please contact an administrator!',
+          ephemeral: true
+        });
+      }
+    }
+
+    if (member.roles.cache.has(membersRole.id)) {
+      return interaction.reply({
+        content: 'You are already verified and have access to all channels.',
+        ephemeral: true
+      });
+    }
+
+    await member.roles.add(membersRole);
+
+    const successEmbed = new EmbedBuilder()
+      .setTitle('Verification Successful')
+      .setDescription(`**Welcome ${member.user.displayName}!**\n\n` +
+        `You have been successfully verified and given the **${membersRole.name}** role.\n\n` +
+        'You now have access to:\n' +
+        '• All text channels\n' +
+        '• Voice channels\n' +
+        '• Bot commands\n' +
+        '• Server events\n\n' +
+        'Enjoy your time in the server!')
+      .setColor('#00ff99')
+      .setThumbnail(member.user.displayAvatarURL())
+      .setFooter({ text: 'Welcome to the server', iconURL: guild.iconURL() })
+      .setTimestamp();
+
+    await interaction.reply({
+      embeds: [successEmbed],
+      ephemeral: true
+    });
+
+    console.log(`${member.user.tag} has been verified and given the Members role`);
+
+  } catch (error) {
+    console.error('Verification error:', error);
+    await interaction.reply({
+      content: 'There was an error during verification. Please try again or contact an administrator.',
+      ephemeral: true
+    });
+  }
+}

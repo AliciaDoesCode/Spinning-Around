@@ -115,7 +115,6 @@ async function viewProfile(interaction, user) {
   });
 
   collector.on('end', async () => {
-    // Disable all buttons when collector expires
     const disabledButtons = ActionRowBuilder.from(buttons);
     disabledButtons.components.forEach(button => button.setDisabled(true));
     

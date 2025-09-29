@@ -4,12 +4,10 @@ const path = require('path');
 const PROFILES_DIR = path.join(__dirname, '../../data');
 const PROFILES_FILE = path.join(PROFILES_DIR, 'profiles.json');
 
-// Ensure data directory exists
 if (!fs.existsSync(PROFILES_DIR)) {
   fs.mkdirSync(PROFILES_DIR, { recursive: true });
 }
 
-// Initialize profiles file if it doesn't exist
 if (!fs.existsSync(PROFILES_FILE)) {
   fs.writeFileSync(PROFILES_FILE, JSON.stringify({}, null, 2));
 }
@@ -40,7 +38,16 @@ class ProfileManager {
   }
 
   getProfile(userId) {
-    return this.profiles[userId] || null;
+    const profile = this.profiles[userId];
+    if (!profile) return null;
+    
+    profile.favoriteArtists = profile.favoriteArtists || [];
+    profile.favoriteSongs = profile.favoriteSongs || [];
+    profile.favoriteVinyls = profile.favoriteVinyls || [];
+    profile.favoriteGenres = profile.favoriteGenres || [];
+    profile.bio = profile.bio || '';
+    
+    return profile;
   }
 
   createProfile(userId) {
@@ -94,7 +101,6 @@ class ProfileManager {
       return { success: false, message: 'Invalid type' };
     }
 
-    // Check if already exists (case insensitive)
     const existingIndex = profile[fieldName].findIndex(
       item => item.toLowerCase() === name.toLowerCase()
     );
@@ -103,8 +109,7 @@ class ProfileManager {
       return { success: false, message: `"${name}" is already in your favorite ${type}s` };
     }
 
-    // Limit to 10 items per category
-    if (profile[fieldName].length >= 10) {
+    if (profile[fieldName].length >= 20) {
       return { success: false, message: `You can only have up to 10 favorite ${type}s. Remove some first.` };
     }
 
@@ -133,7 +138,6 @@ class ProfileManager {
       return { success: false, message: 'Invalid type' };
     }
 
-    // Find item (case insensitive)
     const existingIndex = profile[fieldName].findIndex(
       item => item.toLowerCase() === name.toLowerCase()
     );

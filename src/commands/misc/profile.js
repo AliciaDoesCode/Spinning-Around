@@ -18,14 +18,6 @@ module.exports = {
         {
           name: 'create',
           value: 'create'
-        },
-        {
-          name: 'edit',
-          value: 'edit'
-        },
-        {
-          name: 'delete',
-          value: 'delete'
         }
       ]
     },
@@ -52,18 +44,6 @@ module.exports = {
             return interaction.reply({ content: '❌ You can only create your own profile!', ephemeral: true });
           }
           await createProfile(interaction);
-          break;
-        case 'edit':
-          if (targetUser.id !== interaction.user.id) {
-            return interaction.reply({ content: '❌ You can only edit your own profile!', ephemeral: true });
-          }
-          await editProfile(interaction);
-          break;
-        case 'delete':
-          if (targetUser.id !== interaction.user.id) {
-            return interaction.reply({ content: '❌ You can only delete your own profile!', ephemeral: true });
-          }
-          await deleteProfile(interaction);
           break;
       }
     } catch (error) {
@@ -249,50 +229,38 @@ async function createProfile(interaction) {
   const existingProfile = profileManager.getProfile(interaction.user.id);
   
   if (existingProfile) {
-    return interaction.reply({ content: '❌ You already have a profile! Use `/profile edit` to update it.', ephemeral: true });
+    return interaction.reply({ 
+      content: '❌ You already have a profile! Use `/profile view` to see it or the `/add-favorite` and `/remove-favorite` commands to customize it.', 
+      ephemeral: true 
+    });
   }
 
   const newProfile = profileManager.createProfile(interaction.user.id);
   
   const embed = new EmbedBuilder()
-    .setTitle('🎵 Profile Created!')
-    .setDescription('Your music profile has been created! Use `/add-favorite` commands to customize it.')
-    .setColor('#00ff00')
+    .setTitle('🎵 Profile Created Successfully!')
+    .setDescription('🌟 Welcome to your music journey! Your profile has been created and is ready to be customized.')
+    .setColor('#00ff7f')
+    .setThumbnail(interaction.user.displayAvatarURL({ dynamic: true }))
     .addFields(
-      { name: 'Next Steps', value: '• Use `/add-favorite artist <name>` to add favorite artists\n• Use `/add-favorite song <name>` to add favorite songs\n• Use `/add-favorite vinyl <name>` to add favorite vinyls\n• Use `/set-bio <text>` to add a personal bio' }
-    );
+      { 
+        name: '🎤 Add Your Favorites', 
+        value: '• `/add-favorite artist <name>` - Add favorite artists\n• `/add-favorite song <name>` - Add favorite songs\n• `/add-favorite vinyl <name>` - Add favorite vinyls\n• `/add-favorite genre <name>` - Add favorite genres',
+        inline: false
+      },
+      {
+        name: '✏️ Customize Further',
+        value: '• `/set-bio <text>` - Add a personal bio\n• `/remove-favorite` - Remove items you no longer like\n• `/profile view` - See your completed profile',
+        inline: false
+      },
+      {
+        name: '📊 Explore More',
+        value: '• `/music-stats` - View server music statistics\n• `/profile view @user` - Check out other profiles',
+        inline: false
+      }
+    )
+    .setFooter({ text: 'Start building your music identity!', iconURL: interaction.guild.iconURL() })
+    .setTimestamp();
 
   await interaction.reply({ embeds: [embed], ephemeral: true });
-}
-
-async function editProfile(interaction) {
-  const profile = profileManager.getProfile(interaction.user.id);
-  
-  if (!profile) {
-    return interaction.reply({ content: '❌ You don\'t have a profile yet! Use `/profile create` first.', ephemeral: true });
-  }
-
-  const embed = new EmbedBuilder()
-    .setTitle('✏️ Edit Your Profile')
-    .setDescription('Use these commands to edit your profile:')
-    .setColor('#ffaa00')
-    .addFields(
-      { name: 'Add Items', value: '• `/add-favorite artist <name>`\n• `/add-favorite song <name>`\n• `/add-favorite vinyl <name>`\n• `/add-favorite genre <name>`' },
-      { name: 'Remove Items', value: '• `/remove-favorite artist <name>`\n• `/remove-favorite song <name>`\n• `/remove-favorite vinyl <name>`\n• `/remove-favorite genre <name>`' },
-      { name: 'Other', value: '• `/set-bio <text>` - Update your bio\n• `/profile view` - View your current profile' }
-    );
-
-  await interaction.reply({ embeds: [embed], ephemeral: true });
-}
-
-async function deleteProfile(interaction) {
-  const profile = profileManager.getProfile(interaction.user.id);
-  
-  if (!profile) {
-    return interaction.reply({ content: '❌ You don\'t have a profile to delete.', ephemeral: true });
-  }
-
-  profileManager.deleteProfile(interaction.user.id);
-  
-  await interaction.reply({ content: '✅ Your profile has been deleted successfully.', ephemeral: true });
 }

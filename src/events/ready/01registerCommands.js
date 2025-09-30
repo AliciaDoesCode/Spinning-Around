@@ -6,14 +6,22 @@ module.exports = async (client) => {
   console.log('🔄 Starting command registration...');
   try {
     // Wait a bit to ensure client is fully ready
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    
+    console.log(`🤖 Bot: ${client.user.tag} (${client.user.id})`);
+    console.log(`🏠 Guilds: ${client.guilds.cache.size}`);
     
     const localCommands = getLocalCommands();
     const localCommandNames = localCommands.map(cmd => cmd.name);
+    console.log(`📂 Local commands: ${localCommandNames.join(', ')}`);
+    
     const applicationCommands = await getApplicationCommands(client);
-
     console.log(`📝 Found ${localCommands.length} local commands`);
     console.log(`📋 Found ${applicationCommands.cache.size} registered Discord commands`);
+    
+    if (applicationCommands.cache.size > 0) {
+      console.log(`☁️ Discord commands: ${applicationCommands.cache.map(cmd => cmd.name).join(', ')}`);
+    }
 
     // Delete Discord commands that no longer exist locally or are marked as deleted
     let deletedCount = 0;

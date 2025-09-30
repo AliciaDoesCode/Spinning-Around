@@ -45,36 +45,30 @@ module.exports = {
       );
 
     try {
-      // Check if verification message already exists for this guild
       const existingMessageId = verificationMessages.get(interaction.guild.id);
       
       if (existingMessageId) {
         try {
-          // Try to fetch the existing message to see if it still exists
           await interaction.channel.messages.fetch(existingMessageId);
           return interaction.reply({ 
             content: 'Verification system is already set up in this server!', 
             ephemeral: true 
           });
         } catch (fetchError) {
-          // Message doesn't exist anymore, we can create a new one
           console.log('Previous verification message not found, creating new one...');
         }
       }
 
-      // Send the verification message directly to the channel
       const verificationMessage = await interaction.channel.send({ 
         embeds: [embed], 
         components: [button]
       });
 
-      // Reply privately to confirm setup
       await interaction.reply({ 
         content: 'Verification system setup complete!', 
         ephemeral: true 
       });
 
-      // Store the message ID for future reference
       verificationMessages.set(interaction.guild.id, verificationMessage.id);
 
       console.log('Verification system setup complete!');

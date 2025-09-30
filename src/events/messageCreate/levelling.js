@@ -29,7 +29,6 @@ function saveLevels(levels) {
 }
 
 function getLevelProgressField(currentLevel) {
-  // Create a visual representation of level milestones
   let milestones = '';
   const majorLevels = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50];
   
@@ -99,21 +98,18 @@ module.exports = async (message) => {
           iconURL: message.guild.iconURL() 
         });
 
-      // Main description with user mention and level
-      let description = `� **${message.author.displayName}** has leveled up!\n\n`;
+      let description = `**${message.author.displayName}** has leveled up!\n\n`;
       description += `📈 **New Level:** ${newLevel}\n`;
       description += `💫 **XP Reset:** Starting fresh at 0 XP\n`;
       description += `🎯 **Next Goal:** ${(newLevel + 1) * 100} XP for level ${newLevel + 1}`;
 
-      // Add role reward information if applicable
       if (roleReward) {
         description += `\n\n🎊 **Bonus Reward:** You've earned the **${roleReward}** role!`;
-        embed.setColor('#ffd700'); // Gold color for role rewards
+        embed.setColor('#ffd700'); 
       }
 
       embed.setDescription(description);
 
-      // Add a field showing level progression
       const progressField = getLevelProgressField(newLevel);
       embed.addFields(progressField);
 

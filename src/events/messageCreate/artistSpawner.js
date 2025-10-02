@@ -135,7 +135,7 @@ async function spawnArtist() {
     saveSpawnData(spawnData);
     console.log(`💾 Saved spawn data for ${artist.name}`);
     
-    // Create spawn embed with working image
+    // Create spawn embed with Wikipedia image
     const spawnEmbed = new EmbedBuilder()
       .setTitle('A Wild Artist Appeared!')
       .setDescription(`A **${artist.rarity.toUpperCase()}** artist has appeared!\n\n**Type the artist's name to catch them!**`)

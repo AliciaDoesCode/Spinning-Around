@@ -1,4 +1,19 @@
 {
-  "lastSpawn": 1759405464194,
-  "activeSpawns": {}
+  "lastSpawn": 1759405818173,
+  "activeSpawns": {
+    "1423265563844804720": {
+      "artist": {
+        "name": "The Weeknd",
+        "aliases": [
+          "weeknd",
+          "the weeknd",
+          "abel"
+        ],
+        "image": "https://lastfm.freetls.fastly.net/i/u/300x300/3143699b08cedf375ab8e1fcb8310d4d.png",
+        "rarity": "common",
+        "id": "common_1759405818172_esj1pa2pk"
+      },
+      "spawnTime": 1759405818173
+    }
+  }
 }

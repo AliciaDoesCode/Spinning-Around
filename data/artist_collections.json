@@ -1,1 +1,17 @@
-{}
+{
+  "1388803859182522429": {
+    "artists": [
+      {
+        "name": "Adele",
+        "aliases": [
+          "adele"
+        ],
+        "image": "https://lastfm.freetls.fastly.net/i/u/300x300/b25b959554ed76058ac220b7b2e0a026.png",
+        "rarity": "common",
+        "id": "common_1759405464192_cy94u1bvb",
+        "caughtAt": "2025-10-02T11:44:37.161Z"
+      }
+    ],
+    "totalCaught": 1
+  }
+}

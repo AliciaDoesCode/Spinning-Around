@@ -1,19 +1,4 @@
 {
-  "lastSpawn": 1759405321348,
-  "activeSpawns": {
-    "1423265563844804720": {
-      "artist": {
-        "name": "Whitney Houston",
-        "aliases": [
-          "whitney",
-          "houston",
-          "whitney houston"
-        ],
-        "image": "https://i.imgur.com/example23.jpg",
-        "rarity": "rare",
-        "id": "rare_1759405321347_kziyub3t3"
-      },
-      "spawnTime": 1759405321348
-    }
-  }
+  "lastSpawn": 1759405464194,
+  "activeSpawns": {}
 }

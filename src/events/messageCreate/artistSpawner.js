@@ -135,12 +135,12 @@ async function spawnArtist() {
     saveSpawnData(spawnData);
     console.log(`💾 Saved spawn data for ${artist.name}`);
     
-    // Create spawn embed with image - try thumbnail first for compatibility
+    // Create spawn embed - try different image approach
+    console.log(`🖼️ Trying to display image: ${artist.image}`);
     const spawnEmbed = new EmbedBuilder()
       .setTitle('A Wild Artist Appeared!')
       .setDescription(`A **${artist.rarity.toUpperCase()}** artist has appeared!\n\n**Type the artist's name to catch them!**`)
       .setColor(RARITY_CONFIG[artist.rarity].color)
-      .setThumbnail(artist.image)
       .addFields(
         { name: 'Time Limit', value: '2 minutes', inline: true },
         { name: 'Rarity', value: `${artist.rarity.toUpperCase()}`, inline: true },
@@ -148,6 +148,14 @@ async function spawnArtist() {
       )
       .setFooter({ text: 'First correct guess wins! Good luck!' })
       .setTimestamp();
+    
+    // Try both thumbnail and image
+    try {
+      spawnEmbed.setThumbnail(artist.image);
+      spawnEmbed.setImage(artist.image);
+    } catch (error) {
+      console.log('❌ Failed to set image:', error);
+    }
 
     await channel.send({ embeds: [spawnEmbed] });
     

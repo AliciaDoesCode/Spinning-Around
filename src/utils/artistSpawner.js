@@ -5,46 +5,46 @@ const path = require('path');
 const ARTISTS = {
   // Common artists (70% chance) - Well-known but not super rare
   common: [
-    { name: 'Taylor Swift', aliases: ['taylor', 'swift', 'taylor swift'], image: 'https://via.placeholder.com/300x300/ff69b4/ffffff?text=Taylor+Swift' },
-    { name: 'Ed Sheeran', aliases: ['ed', 'sheeran', 'ed sheeran'], image: 'https://via.placeholder.com/300x300/ffa500/ffffff?text=Ed+Sheeran' },
-    { name: 'Ariana Grande', aliases: ['ariana', 'grande', 'ariana grande', 'ari'], image: 'https://via.placeholder.com/300x300/da70d6/ffffff?text=Ariana+Grande' },
-    { name: 'Justin Bieber', aliases: ['justin', 'bieber', 'justin bieber'], image: 'https://via.placeholder.com/300x300/87ceeb/000000?text=Justin+Bieber' },
-    { name: 'Dua Lipa', aliases: ['dua', 'lipa', 'dua lipa'], image: 'https://via.placeholder.com/300x300/ff1493/ffffff?text=Dua+Lipa' },
-    { name: 'The Weeknd', aliases: ['weeknd', 'the weeknd', 'abel'], image: 'https://via.placeholder.com/300x300/800080/ffffff?text=The+Weeknd' },
-    { name: 'Olivia Rodrigo', aliases: ['olivia', 'rodrigo', 'olivia rodrigo'], image: 'https://via.placeholder.com/300x300/ff6347/ffffff?text=Olivia+Rodrigo' },
-    { name: 'Harry Styles', aliases: ['harry', 'styles', 'harry styles'], image: 'https://via.placeholder.com/300x300/20b2aa/ffffff?text=Harry+Styles' },
-    { name: 'Adele', aliases: ['adele'], image: 'https://via.placeholder.com/300x300/4169e1/ffffff?text=Adele' },
-    { name: 'Bruno Mars', aliases: ['bruno', 'mars', 'bruno mars'], image: 'https://via.placeholder.com/300x300/ff4500/ffffff?text=Bruno+Mars' }
+    { name: 'Taylor Swift', aliases: ['taylor', 'swift', 'taylor swift'], image: 'https://picsum.photos/seed/taylorswift/300/300' },
+    { name: 'Ed Sheeran', aliases: ['ed', 'sheeran', 'ed sheeran'], image: 'https://picsum.photos/seed/edsheeran/300/300' },
+    { name: 'Ariana Grande', aliases: ['ariana', 'grande', 'ariana grande', 'ari'], image: 'https://picsum.photos/seed/arianagrande/300/300' },
+    { name: 'Justin Bieber', aliases: ['justin', 'bieber', 'justin bieber'], image: 'https://picsum.photos/seed/justinbieber/300/300' },
+    { name: 'Dua Lipa', aliases: ['dua', 'lipa', 'dua lipa'], image: 'https://picsum.photos/seed/dualipa/300/300' },
+    { name: 'The Weeknd', aliases: ['weeknd', 'the weeknd', 'abel'], image: 'https://picsum.photos/seed/theweeknd/300/300' },
+    { name: 'Olivia Rodrigo', aliases: ['olivia', 'rodrigo', 'olivia rodrigo'], image: 'https://picsum.photos/seed/oliviarodrigo/300/300' },
+    { name: 'Harry Styles', aliases: ['harry', 'styles', 'harry styles'], image: 'https://picsum.photos/seed/harrystyles/300/300' },
+    { name: 'Adele', aliases: ['adele'], image: 'https://picsum.photos/seed/adele/300/300' },
+    { name: 'Bruno Mars', aliases: ['bruno', 'mars', 'bruno mars'], image: 'https://picsum.photos/seed/brunomars/300/300' }
   ],
   
   // Uncommon artists (20% chance) - Popular but less common spawns
   uncommon: [
-    { name: 'Billie Eilish', aliases: ['billie', 'eilish', 'billie eilish'], image: 'https://via.placeholder.com/300x300/98fb98/000000?text=Billie+Eilish' },
-    { name: 'Rihanna', aliases: ['rihanna', 'riri'], image: 'https://via.placeholder.com/300x300/dc143c/ffffff?text=Rihanna' },
-    { name: 'Drake', aliases: ['drake', 'aubrey'], image: 'https://via.placeholder.com/300x300/ffd700/000000?text=Drake' },
-    { name: 'Bad Bunny', aliases: ['bad bunny', 'bunny', 'bad', 'benito'], image: 'https://via.placeholder.com/300x300/ff69b4/ffffff?text=Bad+Bunny' },
-    { name: 'SZA', aliases: ['sza', 'solana'], image: 'https://via.placeholder.com/300x300/dda0dd/000000?text=SZA' },
-    { name: 'Lana Del Rey', aliases: ['lana', 'del rey', 'lana del rey', 'ldr'], image: 'https://via.placeholder.com/300x300/b0e0e6/000000?text=Lana+Del+Rey' },
-    { name: 'Post Malone', aliases: ['post', 'malone', 'post malone', 'posty'], image: 'https://via.placeholder.com/300x300/708090/ffffff?text=Post+Malone' },
-    { name: 'Kendrick Lamar', aliases: ['kendrick', 'lamar', 'kendrick lamar', 'kdot'], image: 'https://via.placeholder.com/300x300/8b4513/ffffff?text=Kendrick+Lamar' }
+    { name: 'Billie Eilish', aliases: ['billie', 'eilish', 'billie eilish'], image: 'https://picsum.photos/seed/billieeilish/300/300' },
+    { name: 'Rihanna', aliases: ['rihanna', 'riri'], image: 'https://picsum.photos/seed/rihanna/300/300' },
+    { name: 'Drake', aliases: ['drake', 'aubrey'], image: 'https://picsum.photos/seed/drake/300/300' },
+    { name: 'Bad Bunny', aliases: ['bad bunny', 'bunny', 'bad', 'benito'], image: 'https://picsum.photos/seed/badbunny/300/300' },
+    { name: 'SZA', aliases: ['sza', 'solana'], image: 'https://picsum.photos/seed/sza/300/300' },
+    { name: 'Lana Del Rey', aliases: ['lana', 'del rey', 'lana del rey', 'ldr'], image: 'https://picsum.photos/seed/lanadelrey/300/300' },
+    { name: 'Post Malone', aliases: ['post', 'malone', 'post malone', 'posty'], image: 'https://picsum.photos/seed/postmalone/300/300' },
+    { name: 'Kendrick Lamar', aliases: ['kendrick', 'lamar', 'kendrick lamar', 'kdot'], image: 'https://picsum.photos/seed/kendricklamar/300/300' }
   ],
   
   // Rare artists (8% chance) - Legendary or iconic artists
   rare: [
-    { name: 'Beyoncé', aliases: ['beyonce', 'beyoncé', 'bey', 'queen b'], image: 'https://via.placeholder.com/300x300/ffd700/000000?text=Beyonce' },
-    { name: 'Michael Jackson', aliases: ['michael', 'jackson', 'michael jackson', 'mj', 'king of pop'], image: 'https://via.placeholder.com/300x300/000000/ffffff?text=Michael+Jackson' },
-    { name: 'Prince', aliases: ['prince'], image: 'https://via.placeholder.com/300x300/800080/ffffff?text=Prince' },
-    { name: 'Madonna', aliases: ['madonna'], image: 'https://via.placeholder.com/300x300/ff1493/ffffff?text=Madonna' },
-    { name: 'Whitney Houston', aliases: ['whitney', 'houston', 'whitney houston'], image: 'https://via.placeholder.com/300x300/4169e1/ffffff?text=Whitney+Houston' },
-    { name: 'Freddie Mercury', aliases: ['freddie', 'mercury', 'freddie mercury'], image: 'https://via.placeholder.com/300x300/ffff00/000000?text=Freddie+Mercury' }
+    { name: 'Beyoncé', aliases: ['beyonce', 'beyoncé', 'bey', 'queen b'], image: 'https://picsum.photos/seed/beyonce/300/300' },
+    { name: 'Michael Jackson', aliases: ['michael', 'jackson', 'michael jackson', 'mj', 'king of pop'], image: 'https://picsum.photos/seed/michaeljackson/300/300' },
+    { name: 'Prince', aliases: ['prince'], image: 'https://picsum.photos/seed/prince/300/300' },
+    { name: 'Madonna', aliases: ['madonna'], image: 'https://picsum.photos/seed/madonna/300/300' },
+    { name: 'Whitney Houston', aliases: ['whitney', 'houston', 'whitney houston'], image: 'https://picsum.photos/seed/whitneyhouston/300/300' },
+    { name: 'Freddie Mercury', aliases: ['freddie', 'mercury', 'freddie mercury'], image: 'https://picsum.photos/seed/freddiemercury/300/300' }
   ],
   
   // Legendary artists (2% chance) - Ultra rare spawns
   legendary: [
-    { name: 'Elvis Presley', aliases: ['elvis', 'presley', 'elvis presley', 'king'], image: 'https://via.placeholder.com/300x300/ff4500/ffffff?text=Elvis+Presley' },
-    { name: 'The Beatles', aliases: ['beatles', 'the beatles', 'fab four'], image: 'https://via.placeholder.com/300x300/90ee90/000000?text=The+Beatles' },
-    { name: 'Bob Dylan', aliases: ['bob', 'dylan', 'bob dylan'], image: 'https://via.placeholder.com/300x300/8b4513/ffffff?text=Bob+Dylan' },
-    { name: 'Johnny Cash', aliases: ['johnny', 'cash', 'johnny cash', 'man in black'], image: 'https://via.placeholder.com/300x300/2f4f4f/ffffff?text=Johnny+Cash' }
+    { name: 'Elvis Presley', aliases: ['elvis', 'presley', 'elvis presley', 'king'], image: 'https://picsum.photos/seed/elvispresley/300/300' },
+    { name: 'The Beatles', aliases: ['beatles', 'the beatles', 'fab four'], image: 'https://picsum.photos/seed/thebeatles/300/300' },
+    { name: 'Bob Dylan', aliases: ['bob', 'dylan', 'bob dylan'], image: 'https://picsum.photos/seed/bobdylan/300/300' },
+    { name: 'Johnny Cash', aliases: ['johnny', 'cash', 'johnny cash', 'man in black'], image: 'https://picsum.photos/seed/johnnycash/300/300' }
   ]
 };
 

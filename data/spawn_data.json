@@ -1,19 +1,4 @@
 {
-  "lastSpawn": 1759408208073,
-  "activeSpawns": {
-    "1423265563844804720": {
-      "artist": {
-        "name": "Freddie Mercury",
-        "aliases": [
-          "freddie",
-          "mercury",
-          "freddie mercury"
-        ],
-        "image": "https://avatars.githubusercontent.com/u/24?v=4",
-        "rarity": "rare",
-        "id": "rare_1759408208072_c1le5a9m9"
-      },
-      "spawnTime": 1759408208073
-    }
-  }
+  "lastSpawn": 1759408795896,
+  "activeSpawns": {}
 }

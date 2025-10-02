@@ -5,46 +5,46 @@ const path = require('path');
 const ARTISTS = {
   // Common artists (70% chance) - Well-known but not super rare
   common: [
-    { name: 'Taylor Swift', aliases: ['taylor', 'swift', 'taylor swift'], image: 'https://avatars.githubusercontent.com/u/1?v=4' },
-    { name: 'Ed Sheeran', aliases: ['ed', 'sheeran', 'ed sheeran'], image: 'https://avatars.githubusercontent.com/u/2?v=4' },
-    { name: 'Ariana Grande', aliases: ['ariana', 'grande', 'ariana grande', 'ari'], image: 'https://avatars.githubusercontent.com/u/3?v=4' },
-    { name: 'Justin Bieber', aliases: ['justin', 'bieber', 'justin bieber'], image: 'https://avatars.githubusercontent.com/u/4?v=4' },
-    { name: 'Dua Lipa', aliases: ['dua', 'lipa', 'dua lipa'], image: 'https://avatars.githubusercontent.com/u/5?v=4' },
-    { name: 'The Weeknd', aliases: ['weeknd', 'the weeknd', 'abel'], image: 'https://avatars.githubusercontent.com/u/6?v=4' },
-    { name: 'Olivia Rodrigo', aliases: ['olivia', 'rodrigo', 'olivia rodrigo'], image: 'https://avatars.githubusercontent.com/u/7?v=4' },
-    { name: 'Harry Styles', aliases: ['harry', 'styles', 'harry styles'], image: 'https://avatars.githubusercontent.com/u/8?v=4' },
-    { name: 'Adele', aliases: ['adele'], image: 'https://avatars.githubusercontent.com/u/9?v=4' },
-    { name: 'Bruno Mars', aliases: ['bruno', 'mars', 'bruno mars'], image: 'https://avatars.githubusercontent.com/u/10?v=4' }
+    { name: 'Taylor Swift', aliases: ['taylor', 'swift', 'taylor swift'], image: 'https://www.rollingstone.com/wp-content/uploads/2023/12/taylor-swift-person-of-the-year-2023.jpg?w=1024' },
+    { name: 'Ed Sheeran', aliases: ['ed', 'sheeran', 'ed sheeran'], image: 'https://people.com/thmb/8kqJvzX3z7QZ2QqJFjV5E3Nz3QI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(734x0:736x2)/ed-sheeran-121323-1-80fe4bf683a644cfabe4e9a6c717b772.jpg' },
+    { name: 'Ariana Grande', aliases: ['ariana', 'grande', 'ariana grande', 'ari'], image: 'https://hips.hearstapps.com/hmg-prod/images/ariana-grande-attends-the-wicked-movie-musical-in-concert-news-photo-1701287806.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
+    { name: 'Justin Bieber', aliases: ['justin', 'bieber', 'justin bieber'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/08/Justin-Bieber-Through-Years.jpg?quality=86&strip=all&w=1024' },
+    { name: 'Dua Lipa', aliases: ['dua', 'lipa', 'dua lipa'], image: 'https://hips.hearstapps.com/hmg-prod/images/dua-lipa-attends-the-barbie-the-album-celebration-event-news-photo-1689771564.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
+    { name: 'The Weeknd', aliases: ['weeknd', 'the weeknd', 'abel'], image: 'https://www.rollingstone.com/wp-content/uploads/2023/05/the-weeknd.jpg?w=1024' },
+    { name: 'Olivia Rodrigo', aliases: ['olivia', 'rodrigo', 'olivia rodrigo'], image: 'https://hips.hearstapps.com/hmg-prod/images/olivia-rodrigo-attends-the-2023-mtv-video-music-awards-at-news-photo-1694556503.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
+    { name: 'Harry Styles', aliases: ['harry', 'styles', 'harry styles'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/09/Harry-Styles-Through-Years.jpg?quality=86&strip=all&w=1024' },
+    { name: 'Adele', aliases: ['adele'], image: 'https://hips.hearstapps.com/hmg-prod/images/adele-performs-onstage-during-weekends-with-adele-at-the-news-photo-1668605647.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
+    { name: 'Bruno Mars', aliases: ['bruno', 'mars', 'bruno mars'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/01/Bruno-Mars-Through-Years.jpg?quality=86&strip=all&w=1024' }
   ],
   
   // Uncommon artists (20% chance) - Popular but less common spawns
   uncommon: [
-    { name: 'Billie Eilish', aliases: ['billie', 'eilish', 'billie eilish'], image: 'https://avatars.githubusercontent.com/u/11?v=4' },
-    { name: 'Rihanna', aliases: ['rihanna', 'riri'], image: 'https://avatars.githubusercontent.com/u/12?v=4' },
-    { name: 'Drake', aliases: ['drake', 'aubrey'], image: 'https://avatars.githubusercontent.com/u/13?v=4' },
-    { name: 'Bad Bunny', aliases: ['bad bunny', 'bunny', 'bad', 'benito'], image: 'https://avatars.githubusercontent.com/u/14?v=4' },
-    { name: 'SZA', aliases: ['sza', 'solana'], image: 'https://avatars.githubusercontent.com/u/15?v=4' },
-    { name: 'Lana Del Rey', aliases: ['lana', 'del rey', 'lana del rey', 'ldr'], image: 'https://avatars.githubusercontent.com/u/16?v=4' },
-    { name: 'Post Malone', aliases: ['post', 'malone', 'post malone', 'posty'], image: 'https://avatars.githubusercontent.com/u/17?v=4' },
-    { name: 'Kendrick Lamar', aliases: ['kendrick', 'lamar', 'kendrick lamar', 'kdot'], image: 'https://avatars.githubusercontent.com/u/18?v=4' }
+    { name: 'Billie Eilish', aliases: ['billie', 'eilish', 'billie eilish'], image: 'https://hips.hearstapps.com/hmg-prod/images/billie-eilish-attends-the-academy-museum-of-motion-pictures-news-photo-1665252456.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
+    { name: 'Rihanna', aliases: ['rihanna', 'riri'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/02/Rihanna-Through-Years.jpg?quality=86&strip=all&w=1024' },
+    { name: 'Drake', aliases: ['drake', 'aubrey'], image: 'https://www.rollingstone.com/wp-content/uploads/2023/06/drake.jpg?w=1024' },
+    { name: 'Bad Bunny', aliases: ['bad bunny', 'bunny', 'bad', 'benito'], image: 'https://hips.hearstapps.com/hmg-prod/images/bad-bunny-performs-onstage-during-the-2023-coachella-valley-news-photo-1682219536.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
+    { name: 'SZA', aliases: ['sza', 'solana'], image: 'https://www.rollingstone.com/wp-content/uploads/2023/12/sza.jpg?w=1024' },
+    { name: 'Lana Del Rey', aliases: ['lana', 'del rey', 'lana del rey', 'ldr'], image: 'https://hips.hearstapps.com/hmg-prod/images/lana-del-rey-performs-onstage-during-the-2023-coachella-news-photo-1682292736.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
+    { name: 'Post Malone', aliases: ['post', 'malone', 'post malone', 'posty'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/09/Post-Malone-Through-Years.jpg?quality=86&strip=all&w=1024' },
+    { name: 'Kendrick Lamar', aliases: ['kendrick', 'lamar', 'kendrick lamar', 'kdot'], image: 'https://www.rollingstone.com/wp-content/uploads/2023/08/kendrick-lamar.jpg?w=1024' }
   ],
   
-  // Rare artists (8% chance) - Legendary or iconic artists
+  // Rare artists (8% chance) - More challenging and less frequent
   rare: [
-    { name: 'Beyoncé', aliases: ['beyonce', 'beyoncé', 'bey', 'queen b'], image: 'https://avatars.githubusercontent.com/u/19?v=4' },
-    { name: 'Michael Jackson', aliases: ['michael', 'jackson', 'michael jackson', 'mj', 'king of pop'], image: 'https://avatars.githubusercontent.com/u/20?v=4' },
-    { name: 'Prince', aliases: ['prince'], image: 'https://avatars.githubusercontent.com/u/21?v=4' },
-    { name: 'Madonna', aliases: ['madonna'], image: 'https://avatars.githubusercontent.com/u/22?v=4' },
-    { name: 'Whitney Houston', aliases: ['whitney', 'houston', 'whitney houston'], image: 'https://avatars.githubusercontent.com/u/23?v=4' },
-    { name: 'Freddie Mercury', aliases: ['freddie', 'mercury', 'freddie mercury'], image: 'https://avatars.githubusercontent.com/u/24?v=4' }
+    { name: 'Radiohead', aliases: ['radiohead', 'thom yorke', 'thom'], image: 'https://www.rollingstone.com/wp-content/uploads/2023/05/radiohead.jpg?w=1024' },
+    { name: 'Frank Ocean', aliases: ['frank', 'ocean', 'frank ocean', 'christopher'], image: 'https://hips.hearstapps.com/hmg-prod/images/frank-ocean-performs-onstage-during-day-3-of-fyf-fest-2017-news-photo-1598634837.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
+    { name: 'Kanye West', aliases: ['kanye', 'west', 'ye', 'yeezy'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/10/Kanye-West-Through-Years.jpg?quality=86&strip=all&w=1024' },
+    { name: 'Doja Cat', aliases: ['doja', 'cat', 'doja cat', 'amala'], image: 'https://hips.hearstapps.com/hmg-prod/images/doja-cat-attends-the-2023-met-gala-celebrating-karl-news-photo-1683592322.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
+    { name: 'Tyler, The Creator', aliases: ['tyler', 'creator', 'tyler the creator', 'odd future'], image: 'https://www.rollingstone.com/wp-content/uploads/2023/07/tyler-creator.jpg?w=1024' },
+    { name: 'Lizzo', aliases: ['lizzo', 'melissa'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/08/Lizzo-Through-Years.jpg?quality=86&strip=all&w=1024' }
   ],
   
-  // Legendary artists (2% chance) - Ultra rare spawns
+  // Legendary artists (2% chance) - Super rare and iconic
   legendary: [
-    { name: 'Elvis Presley', aliases: ['elvis', 'presley', 'elvis presley', 'king'], image: 'https://avatars.githubusercontent.com/u/25?v=4' },
-    { name: 'The Beatles', aliases: ['beatles', 'the beatles', 'fab four'], image: 'https://avatars.githubusercontent.com/u/26?v=4' },
-    { name: 'Bob Dylan', aliases: ['bob', 'dylan', 'bob dylan'], image: 'https://avatars.githubusercontent.com/u/27?v=4' },
-    { name: 'Johnny Cash', aliases: ['johnny', 'cash', 'johnny cash', 'man in black'], image: 'https://avatars.githubusercontent.com/u/28?v=4' }
+    { name: 'Beyoncé', aliases: ['beyonce', 'bey', 'queen b', 'destiny\'s child'], image: 'https://hips.hearstapps.com/hmg-prod/images/beyonce-performs-onstage-during-the-2023-renaissance-world-news-photo-1693507048.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
+    { name: 'Michael Jackson', aliases: ['michael', 'jackson', 'mj', 'king of pop'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/08/Michael-Jackson-Through-Years.jpg?quality=86&strip=all&w=1024' },
+    { name: 'Prince', aliases: ['prince', 'the artist', 'purple one'], image: 'https://hips.hearstapps.com/hmg-prod/images/prince-performs-onstage-during-his-piano-microphone-tour-news-photo-1598634281.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
+    { name: 'Madonna', aliases: ['madonna', 'queen of pop', 'material girl'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/07/Madonna-Through-Years.jpg?quality=86&strip=all&w=1024' }
   ]
 };
 

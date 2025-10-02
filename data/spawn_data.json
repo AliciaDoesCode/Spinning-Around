@@ -1,4 +1,19 @@
 {
-  "lastSpawn": 1759418342834,
-  "activeSpawns": {}
+  "lastSpawn": 1759409352080,
+  "activeSpawns": {
+    "1423265563844804720": {
+      "artist": {
+        "name": "The Weeknd",
+        "aliases": [
+          "weeknd",
+          "the weeknd",
+          "abel"
+        ],
+        "image": "https://www.rollingstone.com/wp-content/uploads/2023/05/the-weeknd.jpg?w=1024",
+        "rarity": "common",
+        "id": "common_1759409352078_81olj8q7o"
+      },
+      "spawnTime": 1759409352080
+    }
+  }
 }

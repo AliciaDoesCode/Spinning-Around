@@ -152,17 +152,11 @@ async function spawnArtist() {
       .setFooter({ text: 'First correct guess wins! Good luck!' })
       .setTimestamp();
     
-    // Try setting image - let's test with a simple working image first
+    // Set artist image
     try {
-      // Test with a simple image that we know works
-      console.log('🖼️ Setting test image...');
-      spawnEmbed.setImage('https://http.cat/200');
-      console.log('✅ Test image set successfully');
-      
-      // Also try the artist image for comparison
-      console.log('🖼️ Also trying artist image as thumbnail...');
-      spawnEmbed.setThumbnail(artist.image);
-      console.log('✅ Artist thumbnail set successfully');
+      console.log('🖼️ Setting artist image...');
+      spawnEmbed.setImage(artist.image);
+      console.log('✅ Artist image set successfully');
     } catch (error) {
       console.log('❌ Failed to set image:', error);
     }

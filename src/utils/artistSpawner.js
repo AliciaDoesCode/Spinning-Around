@@ -5,46 +5,46 @@ const path = require('path');
 const ARTISTS = {
   // Common artists (70% chance) - Well-known but not super rare
   common: [
-    { name: 'Taylor Swift', aliases: ['taylor', 'swift', 'taylor swift'], image: 'https://picsum.photos/seed/taylorswift/300/300' },
-    { name: 'Ed Sheeran', aliases: ['ed', 'sheeran', 'ed sheeran'], image: 'https://picsum.photos/seed/edsheeran/300/300' },
-    { name: 'Ariana Grande', aliases: ['ariana', 'grande', 'ariana grande', 'ari'], image: 'https://picsum.photos/seed/arianagrande/300/300' },
-    { name: 'Justin Bieber', aliases: ['justin', 'bieber', 'justin bieber'], image: 'https://picsum.photos/seed/justinbieber/300/300' },
-    { name: 'Dua Lipa', aliases: ['dua', 'lipa', 'dua lipa'], image: 'https://picsum.photos/seed/dualipa/300/300' },
-    { name: 'The Weeknd', aliases: ['weeknd', 'the weeknd', 'abel'], image: 'https://picsum.photos/seed/theweeknd/300/300' },
-    { name: 'Olivia Rodrigo', aliases: ['olivia', 'rodrigo', 'olivia rodrigo'], image: 'https://picsum.photos/seed/oliviarodrigo/300/300' },
-    { name: 'Harry Styles', aliases: ['harry', 'styles', 'harry styles'], image: 'https://picsum.photos/seed/harrystyles/300/300' },
-    { name: 'Adele', aliases: ['adele'], image: 'https://picsum.photos/seed/adele/300/300' },
-    { name: 'Bruno Mars', aliases: ['bruno', 'mars', 'bruno mars'], image: 'https://picsum.photos/seed/brunomars/300/300' }
+    { name: 'Taylor Swift', aliases: ['taylor', 'swift', 'taylor swift'], image: 'https://avatars.githubusercontent.com/u/1?v=4' },
+    { name: 'Ed Sheeran', aliases: ['ed', 'sheeran', 'ed sheeran'], image: 'https://avatars.githubusercontent.com/u/2?v=4' },
+    { name: 'Ariana Grande', aliases: ['ariana', 'grande', 'ariana grande', 'ari'], image: 'https://avatars.githubusercontent.com/u/3?v=4' },
+    { name: 'Justin Bieber', aliases: ['justin', 'bieber', 'justin bieber'], image: 'https://avatars.githubusercontent.com/u/4?v=4' },
+    { name: 'Dua Lipa', aliases: ['dua', 'lipa', 'dua lipa'], image: 'https://avatars.githubusercontent.com/u/5?v=4' },
+    { name: 'The Weeknd', aliases: ['weeknd', 'the weeknd', 'abel'], image: 'https://avatars.githubusercontent.com/u/6?v=4' },
+    { name: 'Olivia Rodrigo', aliases: ['olivia', 'rodrigo', 'olivia rodrigo'], image: 'https://avatars.githubusercontent.com/u/7?v=4' },
+    { name: 'Harry Styles', aliases: ['harry', 'styles', 'harry styles'], image: 'https://avatars.githubusercontent.com/u/8?v=4' },
+    { name: 'Adele', aliases: ['adele'], image: 'https://avatars.githubusercontent.com/u/9?v=4' },
+    { name: 'Bruno Mars', aliases: ['bruno', 'mars', 'bruno mars'], image: 'https://avatars.githubusercontent.com/u/10?v=4' }
   ],
   
   // Uncommon artists (20% chance) - Popular but less common spawns
   uncommon: [
-    { name: 'Billie Eilish', aliases: ['billie', 'eilish', 'billie eilish'], image: 'https://picsum.photos/seed/billieeilish/300/300' },
-    { name: 'Rihanna', aliases: ['rihanna', 'riri'], image: 'https://picsum.photos/seed/rihanna/300/300' },
-    { name: 'Drake', aliases: ['drake', 'aubrey'], image: 'https://picsum.photos/seed/drake/300/300' },
-    { name: 'Bad Bunny', aliases: ['bad bunny', 'bunny', 'bad', 'benito'], image: 'https://picsum.photos/seed/badbunny/300/300' },
-    { name: 'SZA', aliases: ['sza', 'solana'], image: 'https://picsum.photos/seed/sza/300/300' },
-    { name: 'Lana Del Rey', aliases: ['lana', 'del rey', 'lana del rey', 'ldr'], image: 'https://picsum.photos/seed/lanadelrey/300/300' },
-    { name: 'Post Malone', aliases: ['post', 'malone', 'post malone', 'posty'], image: 'https://picsum.photos/seed/postmalone/300/300' },
-    { name: 'Kendrick Lamar', aliases: ['kendrick', 'lamar', 'kendrick lamar', 'kdot'], image: 'https://picsum.photos/seed/kendricklamar/300/300' }
+    { name: 'Billie Eilish', aliases: ['billie', 'eilish', 'billie eilish'], image: 'https://avatars.githubusercontent.com/u/11?v=4' },
+    { name: 'Rihanna', aliases: ['rihanna', 'riri'], image: 'https://avatars.githubusercontent.com/u/12?v=4' },
+    { name: 'Drake', aliases: ['drake', 'aubrey'], image: 'https://avatars.githubusercontent.com/u/13?v=4' },
+    { name: 'Bad Bunny', aliases: ['bad bunny', 'bunny', 'bad', 'benito'], image: 'https://avatars.githubusercontent.com/u/14?v=4' },
+    { name: 'SZA', aliases: ['sza', 'solana'], image: 'https://avatars.githubusercontent.com/u/15?v=4' },
+    { name: 'Lana Del Rey', aliases: ['lana', 'del rey', 'lana del rey', 'ldr'], image: 'https://avatars.githubusercontent.com/u/16?v=4' },
+    { name: 'Post Malone', aliases: ['post', 'malone', 'post malone', 'posty'], image: 'https://avatars.githubusercontent.com/u/17?v=4' },
+    { name: 'Kendrick Lamar', aliases: ['kendrick', 'lamar', 'kendrick lamar', 'kdot'], image: 'https://avatars.githubusercontent.com/u/18?v=4' }
   ],
   
   // Rare artists (8% chance) - Legendary or iconic artists
   rare: [
-    { name: 'Beyoncé', aliases: ['beyonce', 'beyoncé', 'bey', 'queen b'], image: 'https://picsum.photos/seed/beyonce/300/300' },
-    { name: 'Michael Jackson', aliases: ['michael', 'jackson', 'michael jackson', 'mj', 'king of pop'], image: 'https://picsum.photos/seed/michaeljackson/300/300' },
-    { name: 'Prince', aliases: ['prince'], image: 'https://picsum.photos/seed/prince/300/300' },
-    { name: 'Madonna', aliases: ['madonna'], image: 'https://picsum.photos/seed/madonna/300/300' },
-    { name: 'Whitney Houston', aliases: ['whitney', 'houston', 'whitney houston'], image: 'https://picsum.photos/seed/whitneyhouston/300/300' },
-    { name: 'Freddie Mercury', aliases: ['freddie', 'mercury', 'freddie mercury'], image: 'https://picsum.photos/seed/freddiemercury/300/300' }
+    { name: 'Beyoncé', aliases: ['beyonce', 'beyoncé', 'bey', 'queen b'], image: 'https://avatars.githubusercontent.com/u/19?v=4' },
+    { name: 'Michael Jackson', aliases: ['michael', 'jackson', 'michael jackson', 'mj', 'king of pop'], image: 'https://avatars.githubusercontent.com/u/20?v=4' },
+    { name: 'Prince', aliases: ['prince'], image: 'https://avatars.githubusercontent.com/u/21?v=4' },
+    { name: 'Madonna', aliases: ['madonna'], image: 'https://avatars.githubusercontent.com/u/22?v=4' },
+    { name: 'Whitney Houston', aliases: ['whitney', 'houston', 'whitney houston'], image: 'https://avatars.githubusercontent.com/u/23?v=4' },
+    { name: 'Freddie Mercury', aliases: ['freddie', 'mercury', 'freddie mercury'], image: 'https://avatars.githubusercontent.com/u/24?v=4' }
   ],
   
   // Legendary artists (2% chance) - Ultra rare spawns
   legendary: [
-    { name: 'Elvis Presley', aliases: ['elvis', 'presley', 'elvis presley', 'king'], image: 'https://picsum.photos/seed/elvispresley/300/300' },
-    { name: 'The Beatles', aliases: ['beatles', 'the beatles', 'fab four'], image: 'https://picsum.photos/seed/thebeatles/300/300' },
-    { name: 'Bob Dylan', aliases: ['bob', 'dylan', 'bob dylan'], image: 'https://picsum.photos/seed/bobdylan/300/300' },
-    { name: 'Johnny Cash', aliases: ['johnny', 'cash', 'johnny cash', 'man in black'], image: 'https://picsum.photos/seed/johnnycash/300/300' }
+    { name: 'Elvis Presley', aliases: ['elvis', 'presley', 'elvis presley', 'king'], image: 'https://avatars.githubusercontent.com/u/25?v=4' },
+    { name: 'The Beatles', aliases: ['beatles', 'the beatles', 'fab four'], image: 'https://avatars.githubusercontent.com/u/26?v=4' },
+    { name: 'Bob Dylan', aliases: ['bob', 'dylan', 'bob dylan'], image: 'https://avatars.githubusercontent.com/u/27?v=4' },
+    { name: 'Johnny Cash', aliases: ['johnny', 'cash', 'johnny cash', 'man in black'], image: 'https://avatars.githubusercontent.com/u/28?v=4' }
   ]
 };
 

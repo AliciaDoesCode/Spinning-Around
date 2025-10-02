@@ -2,16 +2,18 @@ const fs = require('fs');
 const path = require('path');
 
 // Artist database with different rarities
+
+
 const ARTISTS = {
   // Common artists (70% chance) - Well-known but not super rare
   common: [
-    { name: 'Taylor Swift', aliases: ['taylor', 'swift', 'taylor swift'], image: 'https://www.rollingstone.com/wp-content/uploads/2023/12/taylor-swift-person-of-the-year-2023.jpg?w=1024' },
+    { name: 'Taylor Swift', aliases: ['taylor', 'swift', 'taylor swift'], image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQaF9b8TTT0Q3jtTHPqYwPVz6ZJp0aNPFc9g&s' },
     { name: 'Ed Sheeran', aliases: ['ed', 'sheeran', 'ed sheeran'], image: 'https://people.com/thmb/8kqJvzX3z7QZ2QqJFjV5E3Nz3QI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(734x0:736x2)/ed-sheeran-121323-1-80fe4bf683a644cfabe4e9a6c717b772.jpg' },
     { name: 'Ariana Grande', aliases: ['ariana', 'grande', 'ariana grande', 'ari'], image: 'https://hips.hearstapps.com/hmg-prod/images/ariana-grande-attends-the-wicked-movie-musical-in-concert-news-photo-1701287806.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
     { name: 'Justin Bieber', aliases: ['justin', 'bieber', 'justin bieber'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/08/Justin-Bieber-Through-Years.jpg?quality=86&strip=all&w=1024' },
     { name: 'Dua Lipa', aliases: ['dua', 'lipa', 'dua lipa'], image: 'https://hips.hearstapps.com/hmg-prod/images/dua-lipa-attends-the-barbie-the-album-celebration-event-news-photo-1689771564.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
     { name: 'The Weeknd', aliases: ['weeknd', 'the weeknd', 'abel'], image: 'https://www.rollingstone.com/wp-content/uploads/2023/05/the-weeknd.jpg?w=1024' },
-    { name: 'Olivia Rodrigo', aliases: ['olivia', 'rodrigo', 'olivia rodrigo'], image: 'https://hips.hearstapps.com/hmg-prod/images/olivia-rodrigo-attends-the-2023-mtv-video-music-awards-at-news-photo-1694556503.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
+    { name: 'Olivia Rodrigo', aliases: ['olivia', 'rodrigo', 'olivia rodrigo'], image: 'https://static.independent.co.uk/2021/05/19/13/newFile.jpg?quality=75&width=1250&crop=3%3A2%2Csmart&auto=webp'},
     { name: 'Harry Styles', aliases: ['harry', 'styles', 'harry styles'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/09/Harry-Styles-Through-Years.jpg?quality=86&strip=all&w=1024' },
     { name: 'Adele', aliases: ['adele'], image: 'https://hips.hearstapps.com/hmg-prod/images/adele-performs-onstage-during-weekends-with-adele-at-the-news-photo-1668605647.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
     { name: 'Bruno Mars', aliases: ['bruno', 'mars', 'bruno mars'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/01/Bruno-Mars-Through-Years.jpg?quality=86&strip=all&w=1024' }
@@ -47,6 +49,7 @@ const ARTISTS = {
     { name: 'Madonna', aliases: ['madonna', 'queen of pop', 'material girl'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/07/Madonna-Through-Years.jpg?quality=86&strip=all&w=1024' }
   ]
 };
+
 
 // Rarity configurations
 const RARITY_CONFIG = {

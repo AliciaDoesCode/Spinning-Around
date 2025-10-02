@@ -136,7 +136,10 @@ async function spawnArtist() {
     console.log(`💾 Saved spawn data for ${artist.name}`);
     
     // Create spawn embed - try different image approach
-    console.log(`🖼️ Trying to display image: ${artist.image}`);
+    console.log(`🖼️ Artist: ${artist.name}`);
+    console.log(`🖼️ Image URL: ${artist.image}`);
+    console.log(`🖼️ Rarity: ${artist.rarity}`);
+    
     const spawnEmbed = new EmbedBuilder()
       .setTitle('A Wild Artist Appeared!')
       .setDescription(`A **${artist.rarity.toUpperCase()}** artist has appeared!\n\n**Type the artist's name to catch them!**`)
@@ -149,10 +152,17 @@ async function spawnArtist() {
       .setFooter({ text: 'First correct guess wins! Good luck!' })
       .setTimestamp();
     
-    // Try both thumbnail and image
+    // Try setting image - let's test with a simple working image first
     try {
+      // Test with a simple image that we know works
+      console.log('🖼️ Setting test image...');
+      spawnEmbed.setImage('https://http.cat/200');
+      console.log('✅ Test image set successfully');
+      
+      // Also try the artist image for comparison
+      console.log('🖼️ Also trying artist image as thumbnail...');
       spawnEmbed.setThumbnail(artist.image);
-      spawnEmbed.setImage(artist.image);
+      console.log('✅ Artist thumbnail set successfully');
     } catch (error) {
       console.log('❌ Failed to set image:', error);
     }

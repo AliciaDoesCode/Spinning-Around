@@ -135,12 +135,12 @@ async function spawnArtist() {
     saveSpawnData(spawnData);
     console.log(`💾 Saved spawn data for ${artist.name}`);
     
-    // Create spawn embed with Wikipedia image
+    // Create spawn embed with image - try thumbnail first for compatibility
     const spawnEmbed = new EmbedBuilder()
       .setTitle('A Wild Artist Appeared!')
       .setDescription(`A **${artist.rarity.toUpperCase()}** artist has appeared!\n\n**Type the artist's name to catch them!**`)
       .setColor(RARITY_CONFIG[artist.rarity].color)
-      .setImage(artist.image)
+      .setThumbnail(artist.image)
       .addFields(
         { name: 'Time Limit', value: '2 minutes', inline: true },
         { name: 'Rarity', value: `${artist.rarity.toUpperCase()}`, inline: true },

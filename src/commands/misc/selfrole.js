@@ -97,38 +97,51 @@ module.exports = {
   permissionsRequired: [PermissionFlagsBits.ManageRoles],
   botPermissions: [PermissionFlagsBits.ManageRoles],
   callback: async (client, interaction) => {
-    const embed = new EmbedBuilder()
-      .setColor(0xff69b4)
-      .setTitle('🏳️‍🌈 Pronoun & Gender Identity Roles')
-      .setDescription('Click the buttons below to add your pronouns and gender identity!\n\n**Available Options:**')
-      .setFooter({ text: 'Click a button to toggle a role on/off • You can select multiple!' })
-      .setTimestamp();
-
-    // Separate pronoun and gender roles into different sections
+    // Separate pronoun and gender roles into different categories
     const pronounRoles = Object.entries(SELF_ROLES).filter(([key, role]) => role.category === 'pronouns');
     const genderRoles = Object.entries(SELF_ROLES).filter(([key, role]) => role.category === 'gender');
 
-    // Add pronoun section
-    embed.addFields({
-      name: '🗣️ **Pronouns**',
-      value: pronounRoles.map(([key, role]) => `${role.emoji} **${role.label}** - ${role.description}`).join('\n'),
-      inline: false
+    // Create Pronoun Embed
+    const pronounEmbed = new EmbedBuilder()
+      .setColor(0x9b59b6)
+      .setTitle('🗣️ Pronoun Roles')
+      .setDescription('Click the buttons below to add your preferred pronouns!\n\n**Available Pronouns:**')
+      .setFooter({ text: 'Click a button to toggle a pronoun role on/off • You can select multiple!' })
+      .setTimestamp();
+
+    // Add pronoun fields
+    pronounRoles.forEach(([key, role]) => {
+      pronounEmbed.addFields({
+        name: `${role.emoji} ${role.label}`,
+        value: role.description,
+        inline: true
+      });
     });
 
-    // Add gender section
-    embed.addFields({
-      name: '⚧️ **Gender Identity**',
-      value: genderRoles.map(([key, role]) => `${role.emoji} **${role.label}** - ${role.description}`).join('\n'),
-      inline: false
+    // Create Gender Identity Embed
+    const genderEmbed = new EmbedBuilder()
+      .setColor(0xff69b4)
+      .setTitle('🏳️‍🌈 Gender Identity Roles')
+      .setDescription('Click the buttons below to add your gender identity!\n\n**Available Identities:**')
+      .setFooter({ text: 'Click a button to toggle a gender role on/off • You can select multiple!' })
+      .setTimestamp();
+
+    // Add gender fields
+    genderRoles.forEach(([key, role]) => {
+      genderEmbed.addFields({
+        name: `${role.emoji} ${role.label}`,
+        value: role.description,
+        inline: true
+      });
     });
 
-    // Create buttons - Discord allows max 5 buttons per row, 5 rows max
-    const rows = [];
-    const allRoleKeys = Object.keys(SELF_ROLES);
+    // Create buttons for pronouns
+    const pronounRows = [];
+    const pronounKeys = pronounRoles.map(([key]) => key);
     
-    for (let i = 0; i < allRoleKeys.length; i += 5) {
+    for (let i = 0; i < pronounKeys.length; i += 5) {
       const row = new ActionRowBuilder();
-      const chunk = allRoleKeys.slice(i, i + 5);
+      const chunk = pronounKeys.slice(i, i + 5);
       
       for (const roleKey of chunk) {
         const roleData = SELF_ROLES[roleKey];
@@ -140,15 +153,37 @@ module.exports = {
             .setStyle(ButtonStyle.Secondary)
         );
       }
-      rows.push(row);
+      pronounRows.push(row);
     }
 
-    // Send as regular message, not reply
-    await interaction.channel.send({ embeds: [embed], components: rows });
+    // Create buttons for gender identity
+    const genderRows = [];
+    const genderKeys = genderRoles.map(([key]) => key);
+    
+    for (let i = 0; i < genderKeys.length; i += 5) {
+      const row = new ActionRowBuilder();
+      const chunk = genderKeys.slice(i, i + 5);
+      
+      for (const roleKey of chunk) {
+        const roleData = SELF_ROLES[roleKey];
+        row.addComponents(
+          new ButtonBuilder()
+            .setCustomId(`selfrole_${roleKey}`)
+            .setLabel(roleData.label)
+            .setEmoji(roleData.emoji)
+            .setStyle(ButtonStyle.Secondary)
+        );
+      }
+      genderRows.push(row);
+    }
+
+    // Send both embeds as separate messages
+    await interaction.channel.send({ embeds: [pronounEmbed], components: pronounRows });
+    await interaction.channel.send({ embeds: [genderEmbed], components: genderRows });
     
     // Acknowledge the command
     await interaction.reply({ 
-      content: '✅ Pronoun and gender role system has been set up!', 
+      content: '✅ Pronoun and gender role systems have been set up!', 
       ephemeral: true 
     });
   }

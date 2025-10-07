@@ -1,8 +1,6 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } = require('discord.js');
 
-// Configure pronouns and gender roles here
 const SELF_ROLES = {
-  // Pronoun roles
   'he_him': {
     id: '1425086780020887633', 
     emoji: '👱',
@@ -38,7 +36,6 @@ const SELF_ROLES = {
     description: 'Please ask for my pronouns',
     category: 'pronouns'
   },
-  // Gender identity roles
   'male': {
     id: '1425088487060672574',
     emoji: '♂️',
@@ -68,14 +65,14 @@ const SELF_ROLES = {
     category: 'gender'
   },
   'agender': {
-    id: '1425089150104899646', // Replace with actual role ID
+    id: '1425089150104899646', 
     emoji: '⭕',
     label: 'Agender',
     description: 'Without gender identity',
     category: 'gender'
   },
   'trans_mtf': {
-    id: '1425089292895518740', // Replace with actual role ID
+    id: '1425089292895518740', 
     emoji: '💗',
     label: 'Transgender MTF',
     description: 'Transgender - Male to Female',
@@ -97,11 +94,9 @@ module.exports = {
   permissionsRequired: [PermissionFlagsBits.ManageRoles],
   botPermissions: [PermissionFlagsBits.ManageRoles],
   callback: async (client, interaction) => {
-    // Separate pronoun and gender roles into different categories
     const pronounRoles = Object.entries(SELF_ROLES).filter(([key, role]) => role.category === 'pronouns');
     const genderRoles = Object.entries(SELF_ROLES).filter(([key, role]) => role.category === 'gender');
 
-    // Create Pronoun Embed
     const pronounEmbed = new EmbedBuilder()
       .setColor(0x9b59b6)
       .setTitle('🗣️ Pronoun Roles')
@@ -109,7 +104,6 @@ module.exports = {
       .setFooter({ text: 'Click a button to toggle a pronoun role on/off • You can select multiple!' })
       .setTimestamp();
 
-    // Add pronoun fields
     pronounRoles.forEach(([key, role]) => {
       pronounEmbed.addFields({
         name: `${role.emoji} ${role.label}`,
@@ -118,7 +112,6 @@ module.exports = {
       });
     });
 
-    // Create Gender Identity Embed
     const genderEmbed = new EmbedBuilder()
       .setColor(0xff69b4)
       .setTitle('🏳️‍🌈 Gender Identity Roles')
@@ -126,7 +119,6 @@ module.exports = {
       .setFooter({ text: 'Click a button to toggle a gender role on/off • You can select multiple!' })
       .setTimestamp();
 
-    // Add gender fields
     genderRoles.forEach(([key, role]) => {
       genderEmbed.addFields({
         name: `${role.emoji} ${role.label}`,
@@ -135,7 +127,6 @@ module.exports = {
       });
     });
 
-    // Create buttons for pronouns
     const pronounRows = [];
     const pronounKeys = pronounRoles.map(([key]) => key);
     
@@ -156,7 +147,6 @@ module.exports = {
       pronounRows.push(row);
     }
 
-    // Create buttons for gender identity
     const genderRows = [];
     const genderKeys = genderRoles.map(([key]) => key);
     
@@ -177,11 +167,9 @@ module.exports = {
       genderRows.push(row);
     }
 
-    // Send both embeds as separate messages
     await interaction.channel.send({ embeds: [pronounEmbed], components: pronounRows });
     await interaction.channel.send({ embeds: [genderEmbed], components: genderRows });
     
-    // Acknowledge the command
     await interaction.reply({ 
       content: '✅ Pronoun and gender role systems have been set up!', 
       ephemeral: true 

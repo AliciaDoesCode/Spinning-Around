@@ -1,8 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 
-// Import the same pronoun and gender role configuration
 const SELF_ROLES = {
-  // Pronoun roles
   'he_him': {
     id: '1425086780020887633', 
     emoji: '👱',
@@ -38,7 +36,6 @@ const SELF_ROLES = {
     description: 'Please ask for my pronouns',
     category: 'pronouns'
   },
-  // Gender identity roles
   'male': {
     id: '1425088487060672574',
     emoji: '♂️',
@@ -93,7 +90,6 @@ const SELF_ROLES = {
 module.exports = async (interaction) => {
   if (!interaction.isButton()) return;
   
-  // Check if this is a self-role button
   if (!interaction.customId.startsWith('selfrole_')) return;
   
   const roleKey = interaction.customId.replace('selfrole_', '');
@@ -119,11 +115,9 @@ module.exports = async (interaction) => {
       return;
     }
     
-    // Check if user has the role
     const hasRole = member.roles.cache.has(roleConfig.id);
     
     if (hasRole) {
-      // Remove the role
       await member.roles.remove(role);
       
       const embed = new EmbedBuilder()
@@ -138,7 +132,6 @@ module.exports = async (interaction) => {
       });
       
     } else {
-      // Add the role
       await member.roles.add(role);
       
       const embed = new EmbedBuilder()

@@ -1,4 +1,20 @@
 {
-  "lastSpawn": 1759835919123,
-  "activeSpawns": {}
+  "lastSpawn": 1759836274826,
+  "activeSpawns": {
+    "1423265563844804720": {
+      "artist": {
+        "name": "Ariana Grande",
+        "aliases": [
+          "ariana",
+          "grande",
+          "ariana grande",
+          "ari"
+        ],
+        "image": "https://hips.hearstapps.com/hmg-prod/images/ariana-grande-attends-the-wicked-movie-musical-in-concert-news-photo-1701287806.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*",
+        "rarity": "common",
+        "id": "common_1759836274825_j57chduga"
+      },
+      "spawnTime": 1759836274826
+    }
+  }
 }

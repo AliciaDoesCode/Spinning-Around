@@ -23,6 +23,11 @@ module.exports = {
         .setLabel('Open Ticket')
         .setStyle(ButtonStyle.Primary)
     );
-    await interaction.reply({ embeds: [embed], components: [row] });
+    
+    // Send as a regular message, not a reply
+    await interaction.channel.send({ embeds: [embed], components: [row] });
+    
+    // Acknowledge the slash command without showing anything to the user
+    await interaction.reply({ content: 'Ticket embed sent!', ephemeral: true });
   }
 };

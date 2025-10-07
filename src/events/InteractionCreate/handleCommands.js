@@ -2,6 +2,7 @@ console.log('interactionCreate event fired');
 const { devs, testServer } = require('../../../config.json');
 const getLocalCommands = require('../../utils/getLocalCommands');
 const { EmbedBuilder } = require('discord.js');
+const handleSelfRoles = require('./handleSelfRoles');
 
 module.exports = async (client, interaction) => {
   // Handle button interactions first
@@ -10,6 +11,10 @@ module.exports = async (client, interaction) => {
       await handleVerification(interaction);
       return;
     }
+    
+    // Handle self-role buttons
+    await handleSelfRoles(interaction);
+    return;
   }
 
   if (!interaction.isChatInputCommand()) return;

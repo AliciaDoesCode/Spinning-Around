@@ -7,7 +7,7 @@ module.exports = async (member) => {
 
   const embed = new EmbedBuilder()
     .setColor(0x00ff99)
-    .setTitle('🎉 Welcome!')
+    .setTitle('🎉 Welcome to Spinning Around!')
     .setDescription(`Welcome to Spinning Around, ${member.user}! Please check out the rules in <#1424316135200788521> and make sure to grab some roles in <#>  `)
     .setThumbnail(member.user.displayAvatarURL());
 

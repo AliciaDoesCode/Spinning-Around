@@ -6,7 +6,7 @@ module.exports = {
   options: [],
   callback: async (client, interaction) => {
   
-  const allowedUserId = '1388803859182524249';
+  const allowedUserId = '1388803859182522429';
     if (interaction.user.id !== allowedUserId) {
       await interaction.reply({ content: 'You are not allowed to use this command.', ephemeral: true });
       return;

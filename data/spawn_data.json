@@ -1,19 +1,20 @@
 {
-  "lastSpawn": 1759409352080,
+  "lastSpawn": 1759835658275,
   "activeSpawns": {
     "1423265563844804720": {
       "artist": {
-        "name": "The Weeknd",
+        "name": "Kanye West",
         "aliases": [
-          "weeknd",
-          "the weeknd",
-          "abel"
+          "kanye",
+          "west",
+          "ye",
+          "yeezy"
         ],
-        "image": "https://www.rollingstone.com/wp-content/uploads/2023/05/the-weeknd.jpg?w=1024",
-        "rarity": "common",
-        "id": "common_1759409352078_81olj8q7o"
+        "image": "https://www.usmagazine.com/wp-content/uploads/2023/10/Kanye-West-Through-Years.jpg?quality=86&strip=all&w=1024",
+        "rarity": "rare",
+        "id": "rare_1759835658275_3zaqcm7e6"
       },
-      "spawnTime": 1759409352080
+      "spawnTime": 1759835658275
     }
   }
 }

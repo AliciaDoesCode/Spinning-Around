@@ -100,31 +100,31 @@ module.exports = {
     const pronounEmbed = new EmbedBuilder()
       .setColor(0x9b59b6)
       .setTitle('🗣️ Pronoun Roles')
-      .setDescription('Click the buttons below to add your preferred pronouns!\n\n**Available Pronouns:**')
+      .setDescription('Click the buttons below to add your preferred pronouns!')
       .setFooter({ text: 'Click a button to toggle a pronoun role on/off • You can select multiple!' })
       .setTimestamp();
 
-    pronounRoles.forEach(([key, role]) => {
-      pronounEmbed.addFields({
-        name: `${role.emoji} ${role.label}`,
-        value: role.description,
-        inline: true
-      });
+    // Add pronoun list
+    const pronounList = pronounRoles.map(([key, role]) => `${role.emoji} **${role.label}**`).join('\n');
+    pronounEmbed.addFields({
+      name: 'Available Pronouns',
+      value: pronounList,
+      inline: false
     });
 
     const genderEmbed = new EmbedBuilder()
       .setColor(0xff69b4)
       .setTitle('🏳️‍🌈 Gender Identity Roles')
-      .setDescription('Click the buttons below to add your gender identity!\n\n**Available Identities:**')
+      .setDescription('Click the buttons below to add your gender identity!')
       .setFooter({ text: 'Click a button to toggle a gender role on/off • You can select multiple!' })
       .setTimestamp();
 
-    genderRoles.forEach(([key, role]) => {
-      genderEmbed.addFields({
-        name: `${role.emoji} ${role.label}`,
-        value: role.description,
-        inline: true
-      });
+    // Add gender list
+    const genderList = genderRoles.map(([key, role]) => `${role.emoji} **${role.label}**`).join('\n');
+    genderEmbed.addFields({
+      name: 'Available Identities',
+      value: genderList,
+      inline: false
     });
 
     const pronounRows = [];
@@ -139,7 +139,6 @@ module.exports = {
         row.addComponents(
           new ButtonBuilder()
             .setCustomId(`selfrole_${roleKey}`)
-            .setLabel(roleData.label)
             .setEmoji(roleData.emoji)
             .setStyle(ButtonStyle.Secondary)
         );
@@ -159,7 +158,6 @@ module.exports = {
         row.addComponents(
           new ButtonBuilder()
             .setCustomId(`selfrole_${roleKey}`)
-            .setLabel(roleData.label)
             .setEmoji(roleData.emoji)
             .setStyle(ButtonStyle.Secondary)
         );

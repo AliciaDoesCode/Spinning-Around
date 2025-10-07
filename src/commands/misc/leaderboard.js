@@ -34,7 +34,6 @@ module.exports = {
       const guildId = interaction.guild.id;
       const levels = getLevels();
 
-      // Get server level data
       const guildData = levels[guildId];
       if (!guildData || Object.keys(guildData).length === 0) {
         const noDataEmbed = new EmbedBuilder()
@@ -48,7 +47,6 @@ module.exports = {
         return interaction.editReply({ embeds: [noDataEmbed] });
       }
 
-      // Convert to array and sort by level, then by XP
       const userEntries = Object.entries(guildData).map(([userId, data]) => ({
         userId,
         level: data.level,
@@ -56,15 +54,14 @@ module.exports = {
         totalXP: calculateTotalXP(data.level, data.xp)
       }));
 
-      // Sort by level (descending), then by current XP (descending)
       userEntries.sort((a, b) => {
         if (a.level !== b.level) {
-          return b.level - a.level; // Higher level first
+          return b.level - a.level; 
         }
-        return b.xp - a.xp; // Higher XP first if same level
+        return b.xp - a.xp; 
       });
 
-      // Pagination
+      
       const itemsPerPage = 10;
       const totalPages = Math.ceil(userEntries.length / itemsPerPage);
       const startIndex = (page - 1) * itemsPerPage;
@@ -92,7 +89,6 @@ module.exports = {
         })
         .setTimestamp();
 
-      // Build leaderboard description
       let leaderboardText = '';
       let currentUserRank = null;
 
@@ -101,18 +97,15 @@ module.exports = {
         const globalRank = startIndex + i + 1;
         const user = await client.users.fetch(entry.userId).catch(() => null);
         
-        if (!user) continue; // Skip if user not found
+        if (!user) continue; 
 
-        // Check if this is the command user
         if (entry.userId === interaction.user.id) {
           currentUserRank = globalRank;
         }
 
-        // Get rank emoji/medal
         const rankDisplay = getRankDisplay(globalRank);
         const userName = user.displayName || user.username;
         
-        // Progress to next level
         const nextLevelXP = entry.level * 100;
         const progressPercentage = Math.floor((entry.xp / nextLevelXP) * 100);
         
@@ -138,7 +131,6 @@ module.exports = {
         }
       }
 
-      // Add navigation hint if there are multiple pages
       if (totalPages > 1) {
         let navigationHint = '';
         if (page > 1) navigationHint += `⬅️ Previous: \`/leaderboard page:${page - 1}\`\n`;

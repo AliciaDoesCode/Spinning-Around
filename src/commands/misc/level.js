@@ -94,10 +94,8 @@ module.exports = {
       const xpNeeded = nextLevelXP - currentXP;
       const progressPercentage = Math.floor((currentXP / nextLevelXP) * 100);
 
-      // Create progress bar
       const progressBar = createProgressBar(currentXP, nextLevelXP);
 
-      // Get milestone info
       const milestoneInfo = getMilestoneInfo(currentLevel);
 
       const levelEmbed = new EmbedBuilder()

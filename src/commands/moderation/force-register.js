@@ -5,7 +5,6 @@ const getLocalCommands = require('../../utils/getLocalCommands');
 module.exports = {
   name: 'force-register',
   description: 'Force re-register all commands (Admin only)',
-  testOnly: true,
   
   callback: async (client, interaction) => {
     if (!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
@@ -16,6 +15,9 @@ module.exports = {
     }
 
     await interaction.deferReply({ ephemeral: true });
+    
+    // Add debug information
+    console.log(`🔍 Debug Info - Bot ID: ${client.user.id}, Application ID: ${client.application.id}, Guild ID: ${interaction.guild.id}`);
 
     try {
       const localCommands = getLocalCommands();

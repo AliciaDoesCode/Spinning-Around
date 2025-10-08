@@ -1,19 +1,4 @@
 {
-  "lastSpawn": 1759918625606,
-  "activeSpawns": {
-    "1423265563844804720": {
-      "artist": {
-        "name": "Justin Bieber",
-        "aliases": [
-          "justin",
-          "bieber",
-          "justin bieber"
-        ],
-        "image": "https://www.usmagazine.com/wp-content/uploads/2023/08/Justin-Bieber-Through-Years.jpg?quality=86&strip=all&w=1024",
-        "rarity": "common",
-        "id": "common_1759918625605_4nhyuc4tz"
-      },
-      "spawnTime": 1759918625606
-    }
-  }
+  "lastSpawn": 1759919987267,
+  "activeSpawns": {}
 }

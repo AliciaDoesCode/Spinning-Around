@@ -18,7 +18,7 @@ const client = new Client({
   ],
 });
 
-client.once('ready', (c) => {
+client.once('clientReady', (c) => {
   console.log(`✅ ${c.user.tag} is online and ready!`);
 });
 

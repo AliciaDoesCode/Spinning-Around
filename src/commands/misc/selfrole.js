@@ -46,8 +46,8 @@ const SELF_ROLES = {
   'female': {
     id: '1425088504991584266', 
     emoji: '♀️',
-    label: 'Woman',
-    description: 'Identifies as a woman',
+    label: 'Female',
+    description: 'Identifies as a female',
     category: 'gender'
   },
   'non_binary': {
@@ -104,7 +104,6 @@ module.exports = {
       .setFooter({ text: 'Click a button to toggle a pronoun role on/off • You can select multiple!' })
       .setTimestamp();
 
-    // Add pronoun list
     const pronounList = pronounRoles.map(([key, role]) => `${role.emoji} **${role.label}**`).join('\n');
     pronounEmbed.addFields({
       name: 'Available Pronouns',

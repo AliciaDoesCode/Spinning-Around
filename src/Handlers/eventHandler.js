@@ -12,6 +12,7 @@ module.exports = (client) => {
     let eventName = eventFolder.replace(/\\/g, '/').split('/').pop();
     if (eventName.toLowerCase() === 'interactioncreate') eventName = 'interactionCreate';
     if (eventName.toLowerCase() === 'guildmemberadd') eventName = 'guildMemberAdd';
+    if (eventName.toLowerCase() === 'ready') eventName = 'clientReady';
 
     client.on(eventName, async (...args) => {
       for (const eventFile of eventFiles) {

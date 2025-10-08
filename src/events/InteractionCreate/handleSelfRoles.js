@@ -46,8 +46,8 @@ const SELF_ROLES = {
   'female': {
     id: '1425088504991584266', 
     emoji: '♀️',
-    label: 'Woman',
-    description: 'Identifies as a woman',
+    label: 'Female',
+    description: 'Identifies as a female',
     category: 'gender'
   },
   'non_binary': {

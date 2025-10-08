@@ -108,10 +108,12 @@ module.exports = async (client, interaction) => {
     const role = interaction.guild.roles.cache.get(roleConfig.id);
     
     if (!role) {
-      await interaction.reply({
-        content: `❌ The ${roleConfig.label} role doesn't exist! Please contact an admin.`,
-        ephemeral: true
-      });
+      if (!interaction.replied && !interaction.deferred) {
+        await interaction.reply({
+          content: `❌ The ${roleConfig.label} role doesn't exist! Please contact an admin to run \`/create-selfroles\`.`,
+          ephemeral: true
+        });
+      }
       return;
     }
     
@@ -125,11 +127,13 @@ module.exports = async (client, interaction) => {
         .setTitle('🚫 Role Removed')
         .setDescription(`You no longer have the **${roleConfig.emoji} ${roleConfig.label}** ${roleConfig.category === 'pronouns' ? 'pronouns' : 'identity'}!`)
         .setTimestamp();
-        
-      await interaction.reply({
-        embeds: [embed],
-        ephemeral: true
-      });
+      
+      if (!interaction.replied && !interaction.deferred) {
+        await interaction.reply({
+          embeds: [embed],
+          ephemeral: true
+        });
+      }
       
     } else {
       await member.roles.add(role);
@@ -139,19 +143,23 @@ module.exports = async (client, interaction) => {
         .setTitle('✅ Role Added')
         .setDescription(`You now have the **${roleConfig.emoji} ${roleConfig.label}** ${roleConfig.category === 'pronouns' ? 'pronouns' : 'identity'}!`)
         .setTimestamp();
-        
-      await interaction.reply({
-        embeds: [embed],
-        ephemeral: true
-      });
+      
+      if (!interaction.replied && !interaction.deferred) {
+        await interaction.reply({
+          embeds: [embed],
+          ephemeral: true
+        });
+      }
     }
     
   } catch (error) {
     console.error('Error handling self-role:', error);
     
-    await interaction.reply({
-      content: '❌ There was an error processing your role request. Please try again or contact an admin.',
-      ephemeral: true
-    });
+    if (!interaction.replied && !interaction.deferred) {
+      await interaction.reply({
+        content: '❌ There was an error processing your role request. Please try again or contact an admin.',
+        ephemeral: true
+      });
+    }
   }
 };

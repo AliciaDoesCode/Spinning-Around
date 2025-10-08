@@ -14,7 +14,7 @@ module.exports = async (client, interaction) => {
     }
     
     // Handle self-role buttons
-    await handleSelfRoles(interaction);
+    await handleSelfRoles(client, interaction);
     return;
   }
 

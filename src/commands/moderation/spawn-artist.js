@@ -21,7 +21,6 @@ module.exports = {
   testOnly: false,
 
   callback: async (client, interaction) => {
-    // Check if user has administrator permissions
     if (!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
       return interaction.reply({ 
         content: '❌ You need Administrator permissions to use this command!', 
@@ -34,7 +33,7 @@ module.exports = {
       let artist;
 
       if (forceRarity) {
-        // Force specific rarity
+
         const { ARTISTS } = require('../../utils/artistSpawner');
         const artistList = ARTISTS[forceRarity];
         const randomArtist = artistList[Math.floor(Math.random() * artistList.length)];
@@ -50,7 +49,7 @@ module.exports = {
       const spawnData = loadSpawnData();
       const channelId = interaction.channel.id;
       
-      // Check if there's already an active spawn in this channel
+
       if (spawnData.activeSpawns[channelId]) {
         return interaction.reply({ 
           content: '❌ There is already an active artist spawn in this channel!', 
@@ -58,7 +57,7 @@ module.exports = {
         });
       }
 
-      // Store active spawn
+
       spawnData.activeSpawns[channelId] = {
         artist,
         spawnTime: Date.now(),
@@ -66,7 +65,7 @@ module.exports = {
       };
       saveSpawnData(spawnData);
 
-      // Create spawn embed
+
       const spawnEmbed = new EmbedBuilder()
         .setTitle('🎤 A Wild Artist Appeared!')
         .setDescription(`A ${RARITY_CONFIG[artist.rarity].emoji} **${artist.rarity.toUpperCase()}** artist has appeared!\n\n🎯 **Type the artist's name to catch them!**`)
@@ -82,7 +81,7 @@ module.exports = {
 
       await interaction.reply({ embeds: [spawnEmbed] });
 
-      // Confirm to admin
+
       setTimeout(() => {
         interaction.followUp({ 
           content: `✅ **${artist.name}** (${artist.rarity}) spawned manually!`, 
@@ -90,7 +89,7 @@ module.exports = {
         });
       }, 1000);
 
-      // Set timeout for spawn expiration (2 minutes)
+
       setTimeout(async () => {
         const currentSpawnData = loadSpawnData();
         if (currentSpawnData.activeSpawns[channelId]) {
@@ -132,7 +131,7 @@ function getHint(artist) {
     `💭 **Think ${artist.rarity} artists...**`
   ];
   
-  // Add specific hints based on rarity
+
   if (artist.rarity === 'legendary') {
     hints.push('👑 **A true legend of music history!**');
   } else if (artist.rarity === 'rare') {

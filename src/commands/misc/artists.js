@@ -79,7 +79,7 @@ module.exports = {
           .setThumbnail(targetUser.displayAvatarURL({ dynamic: true }))
           .setTimestamp();
 
-        // Add collection stats
+
         let statsText = `**Total Artists:** ${collection.totalCaught}\n\n`;
         statsText += `**Legendary:** ${rarityCounts.legendary}\n`;
         statsText += `**Rare:** ${rarityCounts.rare}\n`;
@@ -168,7 +168,7 @@ module.exports = {
       if (totalPages > 1) {
         const collector = response.createMessageComponentCollector({
           componentType: ComponentType.Button,
-          time: 300000 // 5 minutes
+          time: 300000
         });
 
         collector.on('collect', async (buttonInteraction) => {
@@ -200,7 +200,7 @@ module.exports = {
             disabledButtons.components.forEach(button => button.setDisabled(true));
             await response.edit({ components: [disabledButtons] });
           } catch (error) {
-            // Ignore if message was deleted
+
           }
         });
       }

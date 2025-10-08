@@ -118,7 +118,6 @@ module.exports = {
       .setFooter({ text: 'Click a button to toggle a gender role on/off • You can select multiple!' })
       .setTimestamp();
 
-    // Add gender list
     const genderList = genderRoles.map(([key, role]) => `${role.emoji} **${role.label}**`).join('\n');
     genderEmbed.addFields({
       name: 'Available Identities',

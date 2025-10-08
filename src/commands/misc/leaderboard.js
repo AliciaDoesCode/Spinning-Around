@@ -78,10 +78,10 @@ module.exports = {
         return interaction.editReply({ embeds: [invalidPageEmbed] });
       }
 
-      // Create leaderboard embed
+
       const embed = new EmbedBuilder()
         .setTitle(`🏆 Server Level Leaderboard`)
-        .setColor('#ffd700') // Gold color
+        .setColor('#ffd700')
         .setThumbnail(interaction.guild.iconURL())
         .setFooter({ 
           text: `Page ${page} of ${totalPages} • Total members: ${userEntries.length}`, 
@@ -115,7 +115,7 @@ module.exports = {
 
       embed.setDescription(leaderboardText || 'No users found on this page.');
 
-      // Add user's current rank if not on current page
+
       if (currentUserRank === null && userEntries.length > 0) {
         const userEntry = userEntries.find(entry => entry.userId === interaction.user.id);
         if (userEntry) {
@@ -183,10 +183,10 @@ function getRankDisplay(rank) {
 }
 
 function calculateTotalXP(level, currentXP) {
-  // Calculate total XP earned across all levels
+
   let totalXP = currentXP;
   for (let i = 1; i < level; i++) {
-    totalXP += i * 100; // Each level requires level * 100 XP
+    totalXP += i * 100;
   }
   return totalXP;
 }

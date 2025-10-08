@@ -1,7 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 const SpotifyWebApi = require('spotify-web-api-node');
 
-// Initialize Spotify API
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.SPOTIFY_CLIENT_ID,
   clientSecret: process.env.SPOTIFY_CLIENT_SECRET
@@ -14,7 +13,7 @@ module.exports = {
     {
       name: 'genre',
       description: 'Filter by music genre (optional)',
-      type: 3, // STRING
+      type: 3,
       required: false,
       choices: [
         { name: 'All Genres', value: 'all' },
@@ -30,7 +29,7 @@ module.exports = {
     {
       name: 'region',
       description: 'Region for new releases (optional)',
-      type: 3, // STRING
+      type: 3,
       required: false,
       choices: [
         { name: 'Global', value: 'global' },
@@ -61,9 +60,9 @@ module.exports = {
 
       const now = new Date();
       const startOfWeek = new Date(now);
-      startOfWeek.setDate(now.getDate() - now.getDay()); // Sunday
+      startOfWeek.setDate(now.getDate() - now.getDay());
       const endOfWeek = new Date(startOfWeek);
-      endOfWeek.setDate(startOfWeek.getDate() + 6); // Saturday
+      endOfWeek.setDate(startOfWeek.getDate() + 6);
 
       const formatDate = (date) => {
         return date.toLocaleDateString('en-US', { 
@@ -81,18 +80,16 @@ module.exports = {
 
       const albums = newReleasesResponse.body.albums.items;
       
-      // Filter albums released this week
       const thisWeekReleases = albums.filter(album => {
         const releaseDate = new Date(album.release_date);
         return releaseDate >= startOfWeek && releaseDate <= endOfWeek;
       });
 
-      // Process and format the releases
       let filteredReleases = thisWeekReleases.map(album => ({
         artist: album.artists.map(artist => artist.name).join(', '),
         album: album.name,
         releaseDate: album.release_date,
-        genre: 'Various', // Spotify doesn't provide genre in new releases endpoint
+        genre: 'Various',
         label: album.label || 'Unknown Label',
         trackCount: album.total_tracks,
         spotifyUrl: album.external_urls.spotify,
@@ -103,7 +100,7 @@ module.exports = {
       if (genre !== 'all' && filteredReleases.length > 0) {
         const genreFilteredReleases = [];
         
-        for (const release of filteredReleases.slice(0, 20)) { // Limit to avoid rate limits
+        for (const release of filteredReleases.slice(0, 20)) {
           try {
             const artistSearch = await spotifyApi.searchArtists(release.artist.split(',')[0].trim(), { limit: 1 });
             if (artistSearch.body.artists.items.length > 0) {
@@ -119,7 +116,7 @@ module.exports = {
               }
             }
           } catch (error) {
-            // If artist lookup fails, include the release anyway
+
             genreFilteredReleases.push(release);
           }
         }
@@ -128,7 +125,7 @@ module.exports = {
       }
 
       const embed = new EmbedBuilder()
-        .setColor(0x1db954) // Spotify green
+        .setColor(0x1db954)
         .setTitle(`🎵 New Album Releases This Week`)
         .setDescription(`**Week of ${formatDate(startOfWeek)} - ${formatDate(endOfWeek)}**\n${region !== 'global' ? `Region: ${region}` : 'Global Releases'}${genre !== 'all' ? ` | Genre: ${genre.charAt(0).toUpperCase() + genre.slice(1)}` : ''}`)
         .setTimestamp();
@@ -140,7 +137,7 @@ module.exports = {
           inline: false
         });
         
-        // Show some recent releases if no weekly releases found
+
         const recentReleases = albums.slice(0, 5);
         if (recentReleases.length > 0) {
           embed.addFields({
@@ -152,12 +149,12 @@ module.exports = {
           });
         }
       } else {
-        // Add thumbnail if we have releases with images
+
         if (filteredReleases[0]?.imageUrl) {
           embed.setThumbnail(filteredReleases[0].imageUrl);
         }
 
-        // Add releases to embed (limit to 8 for better readability with Spotify links)
+
         const displayReleases = filteredReleases.slice(0, 8);
         
         displayReleases.forEach((release, index) => {
@@ -176,7 +173,7 @@ module.exports = {
           });
         });
 
-        // Add footer with additional info
+
         embed.addFields({
           name: 'Powered by Spotify',
           value: '🎧 Click album names to listen on Spotify\n💡 Data refreshed from Spotify Web API',

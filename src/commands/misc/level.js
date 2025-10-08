@@ -69,7 +69,7 @@ module.exports = {
         const noDataEmbed = new EmbedBuilder()
           .setTitle('📊 Level Statistics')
           .setDescription(`🔍 **${user.displayName}** hasn't started their leveling journey yet!\n\n💬 Start chatting in the server to begin earning XP and leveling up!`)
-          .setColor('#ff6b6b') // Soft red
+          .setColor('#ff6b6b')
           .setThumbnail(user.displayAvatarURL({ dynamic: true }))
           .addFields(
             { name: '📈 Current Level', value: '0', inline: true },
@@ -86,7 +86,6 @@ module.exports = {
         return;
       }
 
-      // Calculate progress to next level
       const currentXP = data.xp;
       const currentLevel = data.level;
       const nextLevelXP = currentLevel * 100;
@@ -100,7 +99,7 @@ module.exports = {
 
       const levelEmbed = new EmbedBuilder()
         .setTitle(`📊 ${user.displayName}'s Level Statistics`)
-        .setColor('#4ecdc4') // Teal color
+        .setColor('#4ecdc4')
         .setThumbnail(user.displayAvatarURL({ dynamic: true }))
         .setDescription(`🌟 **Level ${currentLevel}** • ${progressPercentage}% to next level`)
         .addFields(

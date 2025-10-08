@@ -1,142 +1,132 @@
 const { EmbedBuilder, AttachmentBuilder } = require('discord.js');
 
-// Collection of cheeky rating responses
 const RATING_RESPONSES = [
-  // High ratings (8-10/10)
   {
     rating: 10,
     responses: [
-      "🔥 **ABSOLUTE FIRE!** This setup is so clean, I'm afraid to breathe near it! Your records probably sound better than the original masters.",
-      "💎 **PRISTINE PERFECTION!** This is the kind of setup that makes audiophiles weep tears of joy. I can practically hear the warmth through the photo!",
-      "🏆 **LEGENDARY STATUS!** Your setup just made my circuits tingle. If turntables could be art, this would be hanging in the Louvre.",
-      "⭐ **COSMIC EXCELLENCE!** This setup is so good, it probably improves the sound quality of digital files just by being in the same room.",
-      "🎖️ **HALL OF FAME WORTHY!** I'm not even sure this is legal. Did you steal this from Abbey Road Studios?"
+      "**Exceptional Setup** - This represents audiophile excellence at its finest. The component selection and placement demonstrate sophisticated understanding of acoustic principles.",
+      "**Professional Grade** - This configuration rivals high-end studio setups. The attention to detail and component quality is immediately apparent.",
+      "**Reference Quality** - This system showcases what's possible when proper engineering meets passionate curation. Truly impressive work.",
+      "**Masterclass Configuration** - Every element has been carefully considered for optimal performance. This is how reference systems should be built.",
+      "**Studio Standard** - This setup demonstrates professional-level understanding of audio reproduction and component synergy."
     ]
   },
   {
     rating: 9,
     responses: [
-      "🚀 **STELLAR SETUP!** One tiny tweak away from perfection, but honestly, I'm just nitpicking because I'm jealous.",
-      "💫 **ALMOST GODLIKE!** This setup makes me want to quit my day job and become a full-time vinyl enthusiast.",
-      "🎯 **INCREDIBLY SOLID!** Your neighbors must love you... or hate you. Depends on your music taste, really.",
-      "🔊 **AUDIOPHILE APPROVED!** This is the kind of setup that makes people believe in the vinyl revival.",
-      "🌟 **NEARLY PERFECT!** Just missing a small 'Do Not Touch' sign to keep mortals away from it."
+      "**Outstanding Achievement** - Nearly flawless execution with excellent component choices and thoughtful system integration.",
+      "**Highly Impressive** - This setup demonstrates serious commitment to audio quality with sophisticated component selection.",
+      "**Excellent Configuration** - Very well thought out system with clear attention to both performance and aesthetics.",
+      "**Superior Setup** - This represents the upper echelon of consumer audio with professional-grade attention to detail.",
+      "**Premium Quality** - Exceptional work that clearly prioritizes sound quality and proper engineering principles."
     ]
   },
   {
     rating: 8,
     responses: [
-      "🎵 **REALLY IMPRESSIVE!** Your setup has that 'I know what I'm doing' vibe that I deeply respect.",
-      "👑 **ROYALTY VIBES!** This setup screams quality louder than a death metal album on full blast.",
-      "🎪 **SHOWSTOPPER!** I bet your records never skip... they wouldn't dare disappoint this beauty.",
-      "🏅 **VERY SOLID!** This is the kind of setup that makes people stay for 'just one more song' until 3 AM.",
-      "⚡ **ELECTRIC ENERGY!** Your stylus is probably doing a happy dance across those grooves."
+      "**Very Well Executed** - Solid component choices with good understanding of system synergy and proper setup techniques.",
+      "**Impressive Work** - This setup shows clear knowledge of audio fundamentals with quality component selection.",
+      "**Strong Configuration** - Well-balanced system that demonstrates good understanding of acoustic principles.",
+      "**Quality Build** - Thoughtful component choices with proper attention to setup and cable management.",
+      "**Commendable Setup** - This represents serious dedication to audio quality with smart component decisions."
     ]
   },
-  
-  // Mid-high ratings (6-7/10)
   {
     rating: 7,
     responses: [
-      "👍 **PRETTY SWEET!** Your setup has potential to make some serious magic happen. Keep tweaking!",
-      "🎸 **ROCK SOLID!** Not fancy, but it gets the job done with style. Sometimes that's all you need!",
-      "🎼 **RESPECTABLE VIBES!** This setup knows how to have a good time without breaking the bank.",
-      "🎨 **ARTISTIC FLAIR!** I can tell you put thought into this. Your records are living their best life.",
-      "🌈 **GOOD ENERGY!** This setup has character! It's like the friendly neighborhood turntable that everyone loves."
+      "**Good Foundation** - Solid setup with clear potential for improvement. The basic components are well-chosen for the price point.",
+      "**Respectable Configuration** - This demonstrates good understanding of the fundamentals with room for future upgrades.",
+      "**Well-Considered Build** - Thoughtful component selection that balances performance with budget constraints effectively.",
+      "**Competent Setup** - Shows good knowledge of audio basics with practical component choices for the system goals.",
+      "**Promising Start** - Strong foundation that could benefit from targeted upgrades to unlock its full potential."
     ]
   },
   {
     rating: 6,
     responses: [
-      "📻 **DECENT FOUNDATION!** You're on the right track! A few upgrades and this could be truly special.",
-      "🎪 **CHARMING SETUP!** It's got personality! Sometimes character beats perfection anyway.",
-      "🎯 **HONEST WORK!** This setup doesn't pretend to be something it's not, and I respect that authenticity.",
-      "🎵 **SOLID START!** Rome wasn't built in a day, and neither are great audio setups. Keep building!",
-      "🎶 **PLEASANT VIBES!** Your records are happy, and that's what really matters in the end."
+      "**Decent Foundation** - Good starting point with clear upgrade path. The fundamentals are in place for future improvements.",
+      "**Functional Setup** - Practical configuration that serves its purpose well within obvious budget considerations.",
+      "**Honest Build** - Straightforward approach with no pretense. Sometimes simplicity is exactly what's needed.",
+      "**Workable Configuration** - Basic setup that handles the essentials competently with room for enhancement.",
+      "**Adequate Performance** - Meets the fundamental requirements with potential for meaningful improvements over time."
     ]
   },
-  
-  // Mid ratings (4-5/10)
   {
     rating: 5,
     responses: [
-      "🤔 **MIDDLE GROUND!** It's... functional! Sometimes that's a compliment, right? Right?",
-      "📐 **PERFECTLY AVERAGE!** Congratulations, you've achieved the golden mean of turntable setups!",
-      "🎲 **FLIP A COIN!** Could go either way, but hey, if the music sounds good to you, that's what counts!",
-      "🌊 **RIDING THE WAVE!** Not making big waves, but definitely floating. Keep on keeping on!",
-      "⚖️ **BALANCED APPROACH!** Right in the middle of 'meh' and 'nice.' The Switzerland of setups!"
+      "**Average Performance** - Functional setup that meets basic requirements. Consider targeted upgrades for improved performance.",
+      "**Standard Configuration** - Typical entry-level setup with expected performance characteristics for the component class.",
+      "**Basic Functionality** - Gets the job done within limitations. Focus on key upgrades to improve overall system performance.",
+      "**Conventional Build** - Standard approach with predictable results. Room for improvement in several key areas.",
+      "**Modest Setup** - Simple configuration with basic performance. Consider upgrading critical components for better results."
     ]
   },
   {
     rating: 4,
     responses: [
-      "😅 **BRAVE EFFORT!** Points for trying! Your records are... well, they're definitely spinning.",
-      "🎪 **QUIRKY CHARM!** It's unique! And by unique, I mean... very unique. In its own special way.",
-      "🎯 **CREATIVE INTERPRETATION!** You're definitely thinking outside the box. Way outside. Like, different dimension outside.",
-      "🤷 **MYSTERIOUS VIBES!** I'm not sure what's happening here, but I'm intrigued by your confidence!",
-      "🎨 **Abstract Art!** This setup challenges conventional definitions of 'audio equipment.' How avant-garde!"
+      "**Needs Improvement** - Several areas requiring attention to achieve better performance and system coherence.",
+      "**Below Average** - Current configuration has significant limitations that impact overall audio quality.",
+      "**Unconventional Approach** - Creative setup choices that may benefit from more traditional component arrangements.",
+      "**Challenging Configuration** - Interesting component choices that could benefit from system optimization.",
+      "**Experimental Setup** - Unique approach that shows creativity, though performance could be enhanced with adjustments."
     ]
   },
-  
-  // Low ratings (1-3/10)
   {
     rating: 3,
     responses: [
-      "😬 **BOLD CHOICES!** I admire your courage in sharing this. That takes real confidence!",
-      "🎪 **CIRCUS ENERGY!** This setup is so chaotic, it might just loop back around to being genius. Maybe?",
-      "🤯 **MIND BENDING!** I'm genuinely confused, but in a way that makes me question reality itself.",
-      "🎲 **GAMBLING VIBES!** Every time you drop the needle, it's a roll of the dice. I respect the thrill-seeking!",
-      "🎨 **DADAIST APPROACH!** This setup rejects traditional notions of 'working properly.' How postmodern!"
+      "**Requires Attention** - This configuration presents several challenges that should be addressed for proper operation.",
+      "**Significant Issues** - Multiple areas need improvement to achieve acceptable performance standards.",
+      "**Problematic Setup** - Current arrangement may be impacting audio quality and component longevity.",
+      "**Needs Restructuring** - Consider revising the component layout and connections for better results.",
+      "**Maintenance Required** - This system would benefit from careful attention to setup fundamentals."
     ]
   },
   {
     rating: 2,
     responses: [
-      "😵 **SURVIVAL MODE!** Your records are living dangerously, but they're still alive! That's... something!",
-      "🎪 **EXTREME SPORTS!** Listening to music on this setup is like bungee jumping for your ears.",
-      "🤪 **CHAOTIC ENERGY!** I don't know how, but I bet this somehow still sounds better than streaming. Vinyl magic!",
-      "🎯 **AGAINST ALL ODDS!** If music comes out of this, it's basically a miracle. I'm rooting for miracles!",
-      "🌪️ **TORNADO AESTHETIC!** Looks like your setup survived a natural disaster. Did it? Please say yes."
+      "**Critical Issues** - Multiple problems that should be addressed immediately to prevent potential damage.",
+      "**Serious Concerns** - This configuration presents risks to both audio quality and equipment safety.",
+      "**Immediate Attention Needed** - Several critical issues require prompt correction for safe operation.",
+      "**Major Problems** - This setup has significant issues that impact both performance and equipment safety.",
+      "**Urgent Improvements Required** - Multiple critical problems need immediate attention."
     ]
   },
   {
     rating: 1,
     responses: [
-      "💀 **ARCHAEOLOGICAL FIND!** Is this a turntable or the remains of one? Either way, it belongs in a museum!",
-      "🚨 **EMERGENCY SITUATION!** I'm calling the vinyl police! This setup needs immediate medical attention!",
-      "😱 **HORROR SHOW!** This isn't a setup, it's a cry for help! Blink twice if your records are holding you hostage!",
-      "🎪 **PERFORMANCE ART!** This must be an intentional statement about the death of physical media. So deep!",
-      "☠️ **DANGER ZONE!** Playing records on this setup is like extreme sports for vinyl. Thrilling but terrifying!"
+      "**System Failure** - This configuration requires complete restructuring to achieve basic functionality.",
+      "**Critical Malfunction** - Immediate professional attention recommended to prevent equipment damage.",
+      "**Complete Overhaul Needed** - This system requires fundamental redesign from the ground up.",
+      "**Non-Functional State** - Current configuration is not suitable for safe audio reproduction.",
+      "**Emergency Intervention** - This setup poses risks to equipment and should be addressed immediately."
     ]
   }
 ];
 
-// Fun setup elements to comment on
 const SETUP_ELEMENTS = [
-  "That cable management though! 🔌",
-  "Love the aesthetic vibes! ✨",
-  "Those speakers are looking mighty fine! 🔊",
-  "The lighting really sets the mood! 💡",
-  "Clean desk = clean sound! 🧹",
-  "That record collection is calling my name! 📀",
-  "The whole vibe is *chef's kiss* 👨‍🍳💋",
-  "Setup goals right here! 🎯",
-  "This screams 'good taste in music'! 🎵",
-  "The attention to detail is impressive! 🔍"
+  "Excellent cable management and organization.",
+  "Well-considered aesthetic and functional design.",
+  "Quality speaker placement and positioning.",
+  "Proper lighting enhances both function and appearance.",
+  "Clean workspace reflects attention to system care.",
+  "Impressive record collection curation.",
+  "Thoughtful integration of all system components.",
+  "Clear evidence of careful planning and execution.",
+  "Demonstrates refined musical taste and knowledge.",
+  "Impressive attention to setup details and optimization."
 ];
 
-// Additional cheeky comments
 const BONUS_COMMENTS = [
-  "Pro tip: The more expensive it looks, the better it sounds! 💸",
-  "I can practically smell the vinyl warmth through this photo! 🌡️",
-  "Somewhere, an audiophile just shed a single tear. 🥲",
-  "This setup has more personality than most people I know! 👤",
-  "Your neighbors either love you or have invested in earplugs. 🏠",
-  "I bet your Spotify account is gathering dust! 📱",
-  "This is why aliens haven't made contact yet - they're too busy listening to our vinyl! 👽",
-  "Someone's been reading the audiophile forums religiously! 📖",
-  "Plot twist: The real treasure was the setups we rated along the way! 🗺️",
-  "This setup is proof that money CAN buy happiness... sometimes! 💰"
+  "Component quality and system synergy are clearly prioritized here.",
+  "The acoustic considerations in this setup are well thought out.",
+  "This demonstrates serious commitment to audio reproduction quality.",
+  "Evidence of careful research and component selection throughout.",
+  "The room acoustics and speaker placement show good understanding.",
+  "This setup reflects both technical knowledge and musical passion.",
+  "Clear attention to both performance and long-term system care.",
+  "The component matching and system balance are well considered.",
+  "This represents a mature approach to audio system building.",
+  "Excellent balance of performance, aesthetics, and practicality."
 ];
 
 module.exports = {
@@ -146,13 +136,13 @@ module.exports = {
     {
       name: 'photo',
       description: 'Upload a photo of your turntable/audio setup',
-      type: 11, // ATTACHMENT
+      type: 11,
       required: true
     },
     {
       name: 'description',
       description: 'Optional: Tell us about your setup!',
-      type: 3, // STRING
+      type: 3,
       required: false,
       max_length: 500
     }
@@ -163,7 +153,6 @@ module.exports = {
       const attachment = interaction.options.getAttachment('photo');
       const description = interaction.options.getString('description');
 
-      // Validate attachment is an image
       if (!attachment || !attachment.contentType || !attachment.contentType.startsWith('image/')) {
         await interaction.reply({
           content: '❌ Please upload a valid image file of your turntable setup!',
@@ -172,16 +161,15 @@ module.exports = {
         return;
       }
 
-      // Generate random rating (weighted towards higher scores for engagement)
       const ratingWeights = [
-        { min: 8, max: 10, weight: 30 },  // High ratings - 30% chance
-        { min: 6, max: 7, weight: 35 },   // Mid-high ratings - 35% chance
-        { min: 4, max: 5, weight: 20 },   // Mid ratings - 20% chance
-        { min: 1, max: 3, weight: 15 }    // Low ratings - 15% chance
+        { min: 8, max: 10, weight: 30 },
+        { min: 6, max: 7, weight: 35 },
+        { min: 4, max: 5, weight: 20 },
+        { min: 1, max: 3, weight: 15 }
       ];
 
       let random = Math.random() * 100;
-      let rating = 5; // Default fallback
+      let rating = 5;
 
       for (const weight of ratingWeights) {
         if (random <= weight.weight) {
@@ -191,7 +179,6 @@ module.exports = {
         random -= weight.weight;
       }
 
-      // Find appropriate response for the rating
       const ratingCategory = RATING_RESPONSES.find(category => category.rating === rating) ||
                             RATING_RESPONSES.find(category => 
                               category.rating <= rating && 
@@ -200,9 +187,8 @@ module.exports = {
 
       const response = ratingCategory.responses[Math.floor(Math.random() * ratingCategory.responses.length)];
       
-      // Add some randomness to make it more engaging
-      const includeBonus = Math.random() < 0.4; // 40% chance for bonus comment
-      const includeElement = Math.random() < 0.3; // 30% chance for element comment
+      const includeBonus = Math.random() < 0.4;
+      const includeElement = Math.random() < 0.3;
       
       let bonusComment = "";
       if (includeBonus) {
@@ -214,7 +200,6 @@ module.exports = {
         elementComment = "\n\n" + SETUP_ELEMENTS[Math.floor(Math.random() * SETUP_ELEMENTS.length)];
       }
 
-      // Create the rating embed
       const ratingEmbed = new EmbedBuilder()
         .setColor(rating >= 8 ? 0x00ff00 : rating >= 6 ? 0xffff00 : rating >= 4 ? 0xff8800 : 0xff0000)
         .setTitle('🎛️ Turntable Setup Rating 🎛️')
@@ -226,7 +211,6 @@ module.exports = {
         })
         .setTimestamp();
 
-      // Add user's description if provided
       if (description) {
         ratingEmbed.addFields({
           name: '📝 Owner\'s Notes',
@@ -235,7 +219,6 @@ module.exports = {
         });
       }
 
-      // Add some rating context
       let ratingContext = "";
       if (rating >= 9) ratingContext = "🏆 **ELITE TIER** - Setup Hall of Fame!";
       else if (rating >= 7) ratingContext = "💎 **PREMIUM TIER** - Seriously impressive!";
@@ -249,7 +232,6 @@ module.exports = {
         inline: true
       });
 
-      // Add some fun statistics
       const fakeStats = {
         warmth: Math.floor(Math.random() * 100) + 1,
         vibes: Math.floor(Math.random() * 100) + 1,
@@ -264,8 +246,7 @@ module.exports = {
 
       await interaction.reply({ embeds: [ratingEmbed] });
 
-      // Sometimes add a follow-up reaction for extra engagement
-      if (Math.random() < 0.3) { // 30% chance
+      if (Math.random() < 0.3) {
         setTimeout(async () => {
           try {
             const message = await interaction.fetchReply();
@@ -273,7 +254,6 @@ module.exports = {
             const randomReaction = reactions[Math.floor(Math.random() * reactions.length)];
             await message.react(randomReaction);
           } catch (error) {
-            // Silently fail if we can't add reactions
           }
         }, 1000);
       }

@@ -24,10 +24,10 @@ module.exports = {
         .setStyle(ButtonStyle.Primary)
     );
     
-    // Send as a regular message, not a reply
+
     await interaction.channel.send({ embeds: [embed], components: [row] });
     
-    // Acknowledge the slash command without showing anything to the user
+
     await interaction.reply({ content: 'Ticket embed sent!', ephemeral: true });
   }
 };

@@ -1,8 +1,6 @@
 const { EmbedBuilder } = require('discord.js');
 
-// Collection of music history and vinyl facts
 const MUSIC_FACTS = [
-  // Vinyl & Recording History Facts
   {
     title: "The Birth of Vinyl",
     fact: "The first vinyl record was created in 1930 by RCA Victor. Before vinyl, records were made of shellac, which was much more brittle and broke easily.",
@@ -28,8 +26,11 @@ const MUSIC_FACTS = [
     fact: "The first commercial radio station, KDKA in Pittsburgh, began broadcasting in 1920. By 1930, 12 million American households had radios, creating the first mass music distribution system.",
     category: "Broadcasting History"
   },
-
-  // Music Genre & Artist Facts
+  {
+    title: "Album Concept Origins",
+    fact: "The concept of the album was popularized by Frank Sinatra in the 1950s, who created the first 'concept album' with themed collections of songs that told a story.",
+    category: "Album History"
+  },
   {
     title: "Rock 'n' Roll Origins",
     fact: "The term 'Rock and Roll' was popularized by DJ Alan Freed in 1951. The genre evolved from blues, country, and gospel music in the American South during the 1940s and 1950s.",
@@ -55,8 +56,6 @@ const MUSIC_FACTS = [
     fact: "Hip-hop was born on August 11, 1973, when DJ Kool Herc threw a party in the Bronx and invented the technique of isolating and extending the 'break' in funk records using two turntables.",
     category: "Genre History"
   },
-
-  // Vinyl Production & Technical Facts
   {
     title: "Vinyl Production Process",
     fact: "Vinyl records are made from polyvinyl chloride (PVC). The master recording is cut into a lacquer disc, which creates a metal 'mother' disc that stamps thousands of vinyl copies.",
@@ -82,8 +81,6 @@ const MUSIC_FACTS = [
     fact: "A 12-inch LP has approximately 1,500 feet of groove spiraling from the outside to the center. The outer grooves move faster past the stylus, allowing for better sound quality.",
     category: "Technical"
   },
-
-  // Music Industry History
   {
     title: "The CD Revolution",
     fact: "The compact disc was jointly developed by Sony and Philips and launched in 1982. The first CD ever pressed was ABBA's 'The Visitors' at a Philips factory in Germany.",
@@ -109,8 +106,6 @@ const MUSIC_FACTS = [
     fact: "Modern musical notation was developed by Guido d'Arezzo around 1000 AD. Before this, music was passed down orally or through primitive notation systems that were difficult to read.",
     category: "Music Theory"
   },
-
-  // Interesting Trivia
   {
     title: "Guitar Evolution",
     fact: "The electric guitar was invented in 1931 by George Beauchamp and Adolph Rickenbacker. The first electric guitar was called the 'Rickenbacker Frying Pan' due to its shape.",
@@ -144,12 +139,10 @@ module.exports = {
   
   callback: async (client, interaction) => {
     try {
-      // Select a random fact
       const randomFact = MUSIC_FACTS[Math.floor(Math.random() * MUSIC_FACTS.length)];
       
-      // Create embed with the fact
       const factEmbed = new EmbedBuilder()
-        .setColor(0x9b59b6) // Purple color
+        .setColor(0x9b59b6)
         .setTitle(randomFact.title)
         .setDescription(randomFact.fact)
         .addFields({
@@ -162,7 +155,6 @@ module.exports = {
         })
         .setTimestamp();
       
-      // Add a random music-related emoji to make it more engaging
       const musicEmojis = ['🎵', '🎶', '🎼', '🎤', '🎸', '🥁', '🎹', '🎧', '📻', '💿', '📀', '🎺', '🎷', '🎻'];
       const randomEmoji = musicEmojis[Math.floor(Math.random() * musicEmojis.length)];
       

@@ -16,7 +16,6 @@ module.exports = {
 
     await interaction.deferReply({ ephemeral: true });
     
-    // Add debug information
     console.log(`🔍 Debug Info - Bot ID: ${client.user.id}, Application ID: ${client.application.id}, Guild ID: ${interaction.guild.id}`);
 
     try {
@@ -25,7 +24,6 @@ module.exports = {
 
       await interaction.editReply('🔄 Step 1: Clearing all existing commands...');
 
-      // Delete all existing commands
       let deletedCount = 0;
       for (const [id, command] of applicationCommands.cache) {
         try {
@@ -69,7 +67,7 @@ module.exports = {
 
       setTimeout(async () => {
         try {
-          await getApplicationCommands(client, true); // Force refresh
+          await getApplicationCommands(client, true);
           console.log('🔄 Refreshed application commands cache');
         } catch (error) {
           console.error('❌ Failed to refresh cache:', error);

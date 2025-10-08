@@ -95,7 +95,7 @@ class Battle {
   }
 }
 
-module.exports = async (interaction) => {
+module.exports = async (client, interaction) => {
   if (!interaction.isButton()) return;
   
   const customId = interaction.customId;

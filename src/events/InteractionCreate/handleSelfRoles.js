@@ -87,7 +87,7 @@ const SELF_ROLES = {
   }
 };
 
-module.exports = async (interaction) => {
+module.exports = async (client, interaction) => {
   if (!interaction.isButton()) return;
   
   if (!interaction.customId.startsWith('selfrole_')) return;

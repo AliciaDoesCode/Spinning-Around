@@ -1,4 +1,3 @@
-console.log('interactionCreate event fired');
 const { devs, testServer } = require('../../../config.json');
 const getLocalCommands = require('../../utils/getLocalCommands');
 const { EmbedBuilder } = require('discord.js');
@@ -7,6 +6,8 @@ const handlePetAdoption = require('./handlePetAdoption');
 const handleBattles = require('./handleBattles');
 
 module.exports = async (client, interaction) => {
+  console.log(`🔄 Interaction received: ${interaction.type} - ${interaction.isChatInputCommand() ? interaction.commandName : interaction.isButton() ? interaction.customId : 'other'}`);
+  
   // Handle button interactions first
   if (interaction.isButton()) {
     if (interaction.customId === 'verify_user') {

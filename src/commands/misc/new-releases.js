@@ -52,16 +52,13 @@ module.exports = {
     const region = interaction.options.getString('region') || 'US';
 
     try {
-      // Check if Spotify credentials are configured
       if (!process.env.SPOTIFY_CLIENT_ID || !process.env.SPOTIFY_CLIENT_SECRET) {
         throw new Error('Spotify API credentials not configured');
       }
 
-      // Get access token for Spotify API
       const tokenResponse = await spotifyApi.clientCredentialsGrant();
       spotifyApi.setAccessToken(tokenResponse.body.access_token);
 
-      // Get current date and calculate this week's range
       const now = new Date();
       const startOfWeek = new Date(now);
       startOfWeek.setDate(now.getDate() - now.getDay()); // Sunday
@@ -76,7 +73,6 @@ module.exports = {
         });
       };
 
-      // Fetch new releases from Spotify
       const newReleasesResponse = await spotifyApi.getNewReleases({
         limit: 50,
         offset: 0,

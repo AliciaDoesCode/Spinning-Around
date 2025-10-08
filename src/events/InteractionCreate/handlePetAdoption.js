@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require('discord.js');
 const { PET_SPECIES, adoptPet } = require('../../utils/petSystem');
 
-module.exports = async (interaction) => {
+module.exports = async (client, interaction) => {
   if (!interaction.isButton()) return;
   
   // Check if this is an adoption button

@@ -2,7 +2,7 @@ const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('
 const { getUserPet, getUserData, PET_SPECIES, PET_ITEMS } = require('../../utils/petSystem');
 
 module.exports = {
-  name: 'profile',
+  name: 'pet-profile',
   description: 'View your complete pet profile and inventory!',
   options: [
     {

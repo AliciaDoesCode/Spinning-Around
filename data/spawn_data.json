@@ -1,19 +1,19 @@
 {
-  "lastSpawn": 1759844470710,
+  "lastSpawn": 1759915984400,
   "activeSpawns": {
     "1423265563844804720": {
       "artist": {
-        "name": "Radiohead",
+        "name": "Harry Styles",
         "aliases": [
-          "radiohead",
-          "thom yorke",
-          "thom"
+          "harry",
+          "styles",
+          "harry styles"
         ],
-        "image": "https://www.rollingstone.com/wp-content/uploads/2023/05/radiohead.jpg?w=1024",
-        "rarity": "rare",
-        "id": "rare_1759844470709_u2k0skbul"
+        "image": "https://www.usmagazine.com/wp-content/uploads/2023/09/Harry-Styles-Through-Years.jpg?quality=86&strip=all&w=1024",
+        "rarity": "common",
+        "id": "common_1759915984399_ujm57we93"
       },
-      "spawnTime": 1759844470710
+      "spawnTime": 1759915984400
     }
   }
 }

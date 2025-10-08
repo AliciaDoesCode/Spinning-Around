@@ -1,20 +1,4 @@
 {
-  "lastSpawn": 1759921508070,
-  "activeSpawns": {
-    "1423265563844804720": {
-      "artist": {
-        "name": "Post Malone",
-        "aliases": [
-          "post",
-          "malone",
-          "post malone",
-          "posty"
-        ],
-        "image": "https://www.usmagazine.com/wp-content/uploads/2023/09/Post-Malone-Through-Years.jpg?quality=86&strip=all&w=1024",
-        "rarity": "uncommon",
-        "id": "uncommon_1759921508069_5kqm71nsv"
-      },
-      "spawnTime": 1759921508070
-    }
-  }
+  "lastSpawn": 1759944945007,
+  "activeSpawns": {}
 }

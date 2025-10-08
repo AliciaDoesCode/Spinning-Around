@@ -7,12 +7,12 @@ const path = require('path');
 const ARTISTS = {
   // Common artists (70% chance) - Well-known but not super rare
   common: [
-    { name: 'Taylor Swift', aliases: ['taylor', 'swift', 'taylor swift'], image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQaF9b8TTT0Q3jtTHPqYwPVz6ZJp0aNPFc9g&s' },
-    { name: 'Ed Sheeran', aliases: ['ed', 'sheeran', 'ed sheeran'], image: 'https://people.com/thmb/8kqJvzX3z7QZ2QqJFjV5E3Nz3QI=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(734x0:736x2)/ed-sheeran-121323-1-80fe4bf683a644cfabe4e9a6c717b772.jpg' },
-    { name: 'Ariana Grande', aliases: ['ariana', 'grande', 'ariana grande', 'ari'], image: 'https://hips.hearstapps.com/hmg-prod/images/ariana-grande-attends-the-wicked-movie-musical-in-concert-news-photo-1701287806.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
-    { name: 'Justin Bieber', aliases: ['justin', 'bieber', 'justin bieber'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/08/Justin-Bieber-Through-Years.jpg?quality=86&strip=all&w=1024' },
-    { name: 'Dua Lipa', aliases: ['dua', 'lipa', 'dua lipa'], image: 'https://hips.hearstapps.com/hmg-prod/images/dua-lipa-attends-the-barbie-the-album-celebration-event-news-photo-1689771564.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },
-    { name: 'The Weeknd', aliases: ['weeknd', 'the weeknd', 'abel'], image: 'https://www.rollingstone.com/wp-content/uploads/2023/05/the-weeknd.jpg?w=1024' },
+    { name: 'Taylor Swift', aliases: ['taylor', 'swift', 'taylor swift'], image: 'https://e3.365dm.com/25/10/2048x1152/skynews-taylor-swift-graham-norton-show_7039647.jpg?20251003045034' },
+    { name: 'Ed Sheeran', aliases: ['ed', 'sheeran', 'ed sheeran'], image: 'https://img.cooplive.com/IBK9OvJtbQz98iOBxcZ1sUjPBlcqAV6oY_jMzCLzAIc/c:1920:1080:fp:0.5:0.33/s:1920:1080:1/aHR0cHM6Ly93d3cuY29vcGxpdmUuY29tLy9jbXNfZmlsZXMvc3lzdGVtL2ltYWdlcy9pbWcyOTEzX29yaWcuanBn' },
+    { name: 'Ariana Grande', aliases: ['ariana', 'grande', 'ariana grande', 'ari'], image: 'https://ichef.bbci.co.uk/ace/standard/3840/cpsprodpb/75ca/live/f7b3e280-62fb-11f0-8e46-7f553f56c2a4.jpg' },
+    { name: 'Justin Bieber', aliases: ['justin', 'bieber', 'justin bieber'], image: 'https://people.com/thmb/D3c5rZsYjpUg7gEUhg1-AXBRU7E=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():focal(745x115:747x117)/justin-bieber-tout-020124-2265996cf2e94ddbaac1933ec360d3a9.jpg' },
+    { name: 'Dua Lipa', aliases: ['dua', 'lipa', 'dua lipa'], image: 'https://media.gq-magazine.co.uk/photos/5d13ab374113b5174c46ac7d/16:9/w_2560%2Cc_limit/dua-lipa-hp-gq-01oct18_b.jpg' },
+    { name: 'The Weeknd', aliases: ['weeknd', 'the weeknd', 'abel'], image: 'https://www.officialcharts.com/sites/default/files/styles/content_column_mobile/public/legacy_images/media/651445/the-weeknd-2.jpg?itok=tzFEe0ze' },
     { name: 'Olivia Rodrigo', aliases: ['olivia', 'rodrigo', 'olivia rodrigo'], image: 'https://static.independent.co.uk/2021/05/19/13/newFile.jpg?quality=75&width=1250&crop=3%3A2%2Csmart&auto=webp'},
     { name: 'Harry Styles', aliases: ['harry', 'styles', 'harry styles'], image: 'https://www.usmagazine.com/wp-content/uploads/2023/09/Harry-Styles-Through-Years.jpg?quality=86&strip=all&w=1024' },
     { name: 'Adele', aliases: ['adele'], image: 'https://hips.hearstapps.com/hmg-prod/images/adele-performs-onstage-during-weekends-with-adele-at-the-news-photo-1668605647.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=1200:*' },

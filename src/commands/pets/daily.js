@@ -1,4 +1,5 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+
 const { getUserPet, savePet, getUserData, saveUserData, PET_SPECIES, PET_ITEMS } = require('../../utils/petSystem');
 
 // Daily rewards and bonuses
@@ -67,8 +68,18 @@ module.exports = {
   ],
 
   callback: async (client, interaction) => {
-    const userId = interaction.user.id;
-    const action = interaction.options.getString('action');
+    try {
+      const userId = interaction.user.id;
+      const action = interaction.options.getString('action');
+      
+      // Safety check for PET_ITEMS
+      if (!PET_ITEMS || Object.keys(PET_ITEMS).length === 0) {
+        console.error('PET_ITEMS could not be loaded or is empty');
+        await interaction.reply({ content: '❌ Pet system is not available. Please contact an administrator.', ephemeral: true });
+        return;
+      }
+      
+      const petItems = PET_ITEMS;
     
     // Get user's pet
     const pet = getUserPet(userId);
@@ -122,7 +133,17 @@ module.exports = {
         // Calculate rewards
         const coins = Math.floor(Math.random() * (DAILY_REWARDS.coins.max - DAILY_REWARDS.coins.min + 1)) + DAILY_REWARDS.coins.min;
         const xp = Math.floor(Math.random() * (DAILY_REWARDS.xp.max - DAILY_REWARDS.xp.min + 1)) + DAILY_REWARDS.xp.min;
-        const randomItem = DAILY_REWARDS.items[Math.floor(Math.random() * DAILY_REWARDS.items.length)];
+        
+        // Filter available items and select one
+        const availableItems = DAILY_REWARDS.items.filter(item => petItems[item]);
+        
+        if (availableItems.length === 0) {
+          console.error('No daily reward items available in petItems! Available items:', Object.keys(petItems));
+          await interaction.reply({ content: '❌ Pet items system error. Please contact an administrator.', ephemeral: true });
+          return;
+        }
+        
+        const randomItem = availableItems[Math.floor(Math.random() * availableItems.length)];
         
         // Add rewards
         user.coins += coins;
@@ -152,13 +173,19 @@ module.exports = {
         let bonusReward = null;
         if (DAILY_REWARDS.streakBonus[user.dailyStreak]) {
           bonusReward = DAILY_REWARDS.streakBonus[user.dailyStreak];
-          user.coins += bonusReward.coins;
-          if (!user.inventory[bonusReward.item]) user.inventory[bonusReward.item] = 0;
-          user.inventory[bonusReward.item] += 1;
+          // Check if bonus item exists
+          if (petItems[bonusReward.item]) {
+            user.coins += bonusReward.coins;
+            if (!user.inventory[bonusReward.item]) user.inventory[bonusReward.item] = 0;
+            user.inventory[bonusReward.item] += 1;
+          } else {
+            console.error(`Streak bonus item '${bonusReward.item}' not found in petItems! Available:`, Object.keys(petItems));
+            bonusReward = null; // Don't show bonus in embed if item doesn't exist
+          }
         }
         
         // Save data
-        savePet(userId, pet);
+        savePet(pet);
         saveUserData(userData);
         
         // Create reward embed
@@ -167,15 +194,15 @@ module.exports = {
           .setTitle('🎁 Daily Reward Claimed!')
           .setDescription(`${interaction.user.username} claimed their daily rewards!`)
           .addFields(
-            { name: '💰 Rewards Earned', value: `**Coins:** ${coins}\n**XP:** ${xp}\n**Item:** ${PET_ITEMS[randomItem].emoji} ${PET_ITEMS[randomItem].name}`, inline: true },
+            { name: '💰 Rewards Earned', value: `**Coins:** ${coins}\n**XP:** ${xp}\n**Item:** ${petItems[randomItem]?.emoji || '❓'} ${petItems[randomItem]?.name || 'Unknown Item'}`, inline: true },
             { name: '🔥 Daily Streak', value: `**${user.dailyStreak} days**`, inline: true },
             { name: '💎 Total Coins', value: `${user.coins}`, inline: true }
           );
           
-        if (bonusReward) {
+        if (bonusReward && petItems[bonusReward.item]) {
           rewardEmbed.addFields({
             name: '🎉 Streak Bonus!',
-            value: `**${user.dailyStreak} Day Bonus:**\n+${bonusReward.coins} coins\n${PET_ITEMS[bonusReward.item].emoji} ${PET_ITEMS[bonusReward.item].name}`,
+            value: `**${user.dailyStreak} Day Bonus:**\n+${bonusReward.coins} coins\n${petItems[bonusReward.item].emoji} ${petItems[bonusReward.item].name}`,
             inline: false
           });
         }
@@ -207,11 +234,19 @@ module.exports = {
         const nextMilestone = [3, 7, 14, 30].find(milestone => milestone > user.dailyStreak);
         if (nextMilestone) {
           const bonus = DAILY_REWARDS.streakBonus[nextMilestone];
-          streakEmbed.addFields({
-            name: '🎯 Next Milestone',
-            value: `**${nextMilestone} days:** +${bonus.coins} coins + ${PET_ITEMS[bonus.item].emoji} ${PET_ITEMS[bonus.item].name}`,
-            inline: false
-          });
+          if (bonus && petItems[bonus.item]) {
+            streakEmbed.addFields({
+              name: '🎯 Next Milestone',
+              value: `**${nextMilestone} days:** +${bonus.coins} coins + ${petItems[bonus.item].emoji} ${petItems[bonus.item].name}`,
+              inline: false
+            });
+          } else if (bonus) {
+            streakEmbed.addFields({
+              name: '🎯 Next Milestone',
+              value: `**${nextMilestone} days:** +${bonus.coins} coins + Special Reward`,
+              inline: false
+            });
+          }
         }
         
         // Show when next daily is available
@@ -267,7 +302,7 @@ module.exports = {
           if (randomEvent.rewards.hunger) pet.hunger = Math.min(100, pet.hunger + randomEvent.rewards.hunger);
           
           // Save data
-          savePet(userId, pet);
+          savePet(pet);
           saveUserData(userData);
           
           const eventEmbed = new EmbedBuilder()
@@ -340,6 +375,16 @@ module.exports = {
         
         await interaction.reply({ embeds: [reminderEmbed], ephemeral: true });
         break;
+    }
+    } catch (error) {
+      console.error('Error in daily command:', error);
+      console.error('Stack trace:', error.stack);
+      
+      try {
+        await interaction.reply({ content: '❌ An error occurred with the daily command. Please try again.', ephemeral: true });
+      } catch (replyError) {
+        console.error('Could not send error message:', replyError);
+      }
     }
   }
 };

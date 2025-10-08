@@ -2,8 +2,6 @@ const { devs, testServer } = require('../../../config.json');
 const getLocalCommands = require('../../utils/getLocalCommands');
 const { EmbedBuilder } = require('discord.js');
 const handleSelfRoles = require('./handleSelfRoles');
-const handlePetAdoption = require('./handlePetAdoption');
-const handleBattles = require('./handleBattles');
 
 module.exports = async (client, interaction) => {
   console.log(`🔄 Interaction received: ${interaction.type} - ${interaction.isChatInputCommand() ? interaction.commandName : interaction.isButton() ? interaction.customId : 'other'}`);
@@ -17,12 +15,6 @@ module.exports = async (client, interaction) => {
     
     // Handle self-role buttons
     await handleSelfRoles(interaction);
-    
-    // Handle pet adoption buttons
-    await handlePetAdoption(interaction);
-    
-    // Handle battle buttons
-    await handleBattles(interaction);
     return;
   }
 

@@ -1,19 +1,19 @@
 {
-  "lastSpawn": 1759915984400,
+  "lastSpawn": 1759918625606,
   "activeSpawns": {
     "1423265563844804720": {
       "artist": {
-        "name": "Harry Styles",
+        "name": "Justin Bieber",
         "aliases": [
-          "harry",
-          "styles",
-          "harry styles"
+          "justin",
+          "bieber",
+          "justin bieber"
         ],
-        "image": "https://www.usmagazine.com/wp-content/uploads/2023/09/Harry-Styles-Through-Years.jpg?quality=86&strip=all&w=1024",
+        "image": "https://www.usmagazine.com/wp-content/uploads/2023/08/Justin-Bieber-Through-Years.jpg?quality=86&strip=all&w=1024",
         "rarity": "common",
-        "id": "common_1759915984399_ujm57we93"
+        "id": "common_1759918625605_4nhyuc4tz"
       },
-      "spawnTime": 1759915984400
+      "spawnTime": 1759918625606
     }
   }
 }

@@ -1,6 +1,5 @@
 const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, PermissionFlagsBits } = require('discord.js');
 
-// Store verification messages by guild ID
 const verificationMessages = new Map();
 
 module.exports = {

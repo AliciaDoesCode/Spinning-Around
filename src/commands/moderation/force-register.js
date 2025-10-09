@@ -5,7 +5,6 @@ const getLocalCommands = require('../../utils/getLocalCommands');
 module.exports = {
   name: 'force-register',
   description: 'Force re-register all commands (Admin only)',
-  testOnly: true,
   
   callback: async (client, interaction) => {
     if (!interaction.member.permissions.has(PermissionFlagsBits.Administrator)) {
@@ -16,6 +15,8 @@ module.exports = {
     }
 
     await interaction.deferReply({ ephemeral: true });
+    
+    console.log(`🔍 Debug Info - Bot ID: ${client.user.id}, Application ID: ${client.application.id}, Guild ID: ${interaction.guild.id}`);
 
     try {
       const localCommands = getLocalCommands();
@@ -23,7 +24,6 @@ module.exports = {
 
       await interaction.editReply('🔄 Step 1: Clearing all existing commands...');
 
-      // Delete all existing commands
       let deletedCount = 0;
       for (const [id, command] of applicationCommands.cache) {
         try {
@@ -67,7 +67,7 @@ module.exports = {
 
       setTimeout(async () => {
         try {
-          await getApplicationCommands(client, true); // Force refresh
+          await getApplicationCommands(client, true);
           console.log('🔄 Refreshed application commands cache');
         } catch (error) {
           console.error('❌ Failed to refresh cache:', error);

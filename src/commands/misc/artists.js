@@ -45,13 +45,11 @@ module.exports = {
         return interaction.reply({ embeds: [emptyEmbed] });
       }
 
-      // Filter artists by rarity if specified
       let filteredArtists = collection.artists;
       if (rarityFilter) {
         filteredArtists = collection.artists.filter(artist => artist.rarity === rarityFilter);
       }
 
-      // Sort by rarity (legendary first) then by catch date
       const rarityOrder = { legendary: 0, rare: 1, uncommon: 2, common: 3 };
       filteredArtists.sort((a, b) => {
         const rarityDiff = rarityOrder[a.rarity] - rarityOrder[b.rarity];
@@ -59,7 +57,6 @@ module.exports = {
         return new Date(b.caughtAt) - new Date(a.caughtAt);
       });
 
-      // Pagination
       const itemsPerPage = 8;
       const totalPages = Math.ceil(filteredArtists.length / itemsPerPage);
       let currentPage = 0;
@@ -69,7 +66,6 @@ module.exports = {
         const endIdx = startIdx + itemsPerPage;
         const pageArtists = filteredArtists.slice(startIdx, endIdx);
 
-        // Calculate rarity counts
         const rarityCounts = {
           legendary: collection.artists.filter(a => a.rarity === 'legendary').length,
           rare: collection.artists.filter(a => a.rarity === 'rare').length,
@@ -83,7 +79,7 @@ module.exports = {
           .setThumbnail(targetUser.displayAvatarURL({ dynamic: true }))
           .setTimestamp();
 
-        // Add collection stats
+
         let statsText = `**Total Artists:** ${collection.totalCaught}\n\n`;
         statsText += `**Legendary:** ${rarityCounts.legendary}\n`;
         statsText += `**Rare:** ${rarityCounts.rare}\n`;
@@ -96,7 +92,6 @@ module.exports = {
 
         embed.addFields({ name: 'Collection Stats', value: statsText, inline: false });
 
-        // Add artists for this page
         if (pageArtists.length > 0) {
           let artistsList = '';
           pageArtists.forEach((artist, index) => {
@@ -173,7 +168,7 @@ module.exports = {
       if (totalPages > 1) {
         const collector = response.createMessageComponentCollector({
           componentType: ComponentType.Button,
-          time: 300000 // 5 minutes
+          time: 300000
         });
 
         collector.on('collect', async (buttonInteraction) => {
@@ -205,7 +200,7 @@ module.exports = {
             disabledButtons.components.forEach(button => button.setDisabled(true));
             await response.edit({ components: [disabledButtons] });
           } catch (error) {
-            // Ignore if message was deleted
+
           }
         });
       }

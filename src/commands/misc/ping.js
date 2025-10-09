@@ -1,6 +1,6 @@
 module.exports = {
   name: 'ping',
-  description: 'Pong!',
+  description: 'Pong! Check bot latency',
   testOnly: false,
 
   callback: (client, interaction) => {

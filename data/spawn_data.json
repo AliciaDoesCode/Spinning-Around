@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "lastSpawn": 1759430724779,
   "activeSpawns": {
     "1423265563844804720": {
@@ -17,4 +18,8 @@
       "spawnTime": 1759430724779
     }
   }
+=======
+  "lastSpawn": 1759944945007,
+  "activeSpawns": {}
+>>>>>>> 3f1e8becce1f2a9d1d165cedf54fe88f946e896a
 }

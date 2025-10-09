@@ -1,19 +1,20 @@
 {
-  "lastSpawn": 1759409352080,
+  "lastSpawn": 1759430724779,
   "activeSpawns": {
     "1423265563844804720": {
       "artist": {
-        "name": "The Weeknd",
+        "name": "Kendrick Lamar",
         "aliases": [
-          "weeknd",
-          "the weeknd",
-          "abel"
+          "kendrick",
+          "lamar",
+          "kendrick lamar",
+          "kdot"
         ],
-        "image": "https://www.rollingstone.com/wp-content/uploads/2023/05/the-weeknd.jpg?w=1024",
-        "rarity": "common",
-        "id": "common_1759409352078_81olj8q7o"
+        "image": "https://www.rollingstone.com/wp-content/uploads/2023/08/kendrick-lamar.jpg?w=1024",
+        "rarity": "uncommon",
+        "id": "uncommon_1759430724778_3a5b93ofn"
       },
-      "spawnTime": 1759409352080
+      "spawnTime": 1759430724779
     }
   }
 }
